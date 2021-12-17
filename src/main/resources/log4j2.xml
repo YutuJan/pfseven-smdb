@@ -13,8 +13,8 @@
 
 		<!-- Rolling Random Access File Appender with a default buffer of 256 * 1024 bytes -->
 		<RollingRandomAccessFile name="DefaultAppender"
-								 fileName="logs/java-path-spring-default.log"
-								 filePattern="logs/java-path-spring-default-%d{yyyy-MM-dd}.zip">
+								 fileName="logs/pfseven-smdb-default.log"
+								 filePattern="logs/pfseven-smdb-default-%d{yyyy-MM-dd}.zip">
 			<PatternLayout>
 				<Pattern>${LOG_PATTERN}</Pattern>
 			</PatternLayout>
@@ -30,8 +30,8 @@
 
 		<!-- Rolling Random Access File Appender with a default buffer of 256 * 1024 bytes -->
 		<RollingRandomAccessFile name="DataAppender"
-								 fileName="logs/java-path-spring-data.log"
-								 filePattern="logs/java-path-spring-data-%d{yyyy-MM-dd}.zip">
+								 fileName="logs/pfseven-smdb-data.log"
+								 filePattern="logs/pfseven-smdb-data-%d{yyyy-MM-dd}.zip">
 			<PatternLayout>
 				<Pattern>${LOG_PATTERN}</Pattern>
 			</PatternLayout>
@@ -47,7 +47,7 @@
 	</Appenders>
 
 	<Loggers>
-		<AsyncLogger name="gr.codelearn.spring" level="trace" additivity="false">
+		<AsyncLogger name="com.pfseven.smdb" level="trace" additivity="false">
 			<AppenderRef ref="ConsoleAppender"/>
 			<AppenderRef ref="DefaultAppender"/>
 		</AsyncLogger>
