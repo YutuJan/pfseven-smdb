@@ -3,10 +3,7 @@ package com.pfseven.smdb.domain;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -30,9 +27,11 @@ public class Person extends BaseModel {
     @NotNull
     private String birthPlace;
 
+    @NotNull
+    private String biography;
+
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @ElementCollection
-    @Enumerated(EnumType.STRING)
-    private Set<Filmography> filmography = new HashSet<>();
+    @OneToMany
+    private Set<Position> positions = new HashSet<>();
 }

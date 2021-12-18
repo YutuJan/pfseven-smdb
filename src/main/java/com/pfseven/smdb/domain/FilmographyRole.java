@@ -1,5 +1,5 @@
 package com.pfseven.smdb.domain;
 
-public enum Filmography {
+public enum FilmographyRole {
     ACTOR, DIRECTOR, WRITER, PRODUCER
 }
