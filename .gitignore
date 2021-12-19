@@ -91,6 +91,8 @@ node
 *.orig
 .gitconfig
 docker
+uml
+HELP.md
 
 /logs/
 
