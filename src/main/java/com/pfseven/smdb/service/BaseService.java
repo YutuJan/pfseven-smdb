@@ -17,7 +17,7 @@ public interface BaseService<T, ID> {
 
     List<T> findAll();
 
-    T find(Long id);
+    T find(ID id);
 
     T get(ID id);
 }
