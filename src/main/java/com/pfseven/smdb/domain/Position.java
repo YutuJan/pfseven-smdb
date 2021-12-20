@@ -5,10 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Data
@@ -16,14 +13,21 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @SuperBuilder
 @Entity
+@Table(name = "POSITIONS")
+@SequenceGenerator(name = "idGenerator", sequenceName = "POSITIONS_SEQ", initialValue = 1, allocationSize = 1)
 public class Position extends BaseModel {
     @NotNull
     @Enumerated(EnumType.STRING)
+    @Column(name = "POSITION", nullable = false)
     private FilmographyRole position;
+
     @NotNull
     @OneToOne
+    @JoinColumn(name = "VIDEO_ENTERTAINMENT")
     private VideoEntertainment videoEntertainment;
+
     @NotNull
     @OneToOne
+    @JoinColumn(name = "PERSON")
     private Person person;
 }
