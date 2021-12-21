@@ -1,37 +1,38 @@
 package com.pfseven.smdb.service;
 
 import com.pfseven.smdb.domain.BaseModel;
-import com.pfseven.smdb.repository.BaseRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public abstract class BaseServiceImpl<T extends BaseModel> implements BaseService<T, Long> {
 
-    abstract BaseRepository<T, Long> getRepository();
+    abstract JpaRepository<T, Long> getRepository();
 
     @Override
-    public T create(T clazz) {
-        return getRepository().create(clazz);
+    public T create(T entity) {
+        return getRepository().save(entity);
     }
 
     @Override
-    public List<T> createAll(List<T> clazzes) {
-        List<T> createdEntities = new ArrayList<>();
-        for (T clazz : clazzes) {
-            createdEntities.add(create(clazz));
-        }
-        return createdEntities;
+    public List<T> createAll(T... entities) {
+        return createAll(Arrays.asList(entities));
+    }
+
+    public List<T> createAll(List<T> entities) {
+        return getRepository().saveAll(entities);
     }
 
     @Override
-    public void update(T clazz) {
-        getRepository().update(clazz);
+    public void update(T entity) {
+        getRepository().save(entity);
     }
 
     @Override
-    public void delete(T clazz) {
-        getRepository().delete(clazz);
+    public void delete(T entity) {
+        getRepository().delete(entity);
     }
 
     @Override
@@ -40,8 +41,8 @@ public abstract class BaseServiceImpl<T extends BaseModel> implements BaseServic
     }
 
     @Override
-    public boolean exists(T clazz) {
-        return getRepository().exists(clazz);
+    public boolean exists(T entity) {
+        return getRepository().existsById(entity.getId());
     }
 
     @Override
@@ -51,11 +52,11 @@ public abstract class BaseServiceImpl<T extends BaseModel> implements BaseServic
 
     @Override
     public T find(Long id) {
-        return getRepository().find(id);
+        return getRepository().findById(id).orElseThrow(NoSuchElementException::new);
     }
 
     @Override
     public T get(Long id) {
-        return getRepository().get(id);
+        return getRepository().getById(id);
     }
 }

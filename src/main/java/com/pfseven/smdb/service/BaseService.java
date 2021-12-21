@@ -3,17 +3,19 @@ package com.pfseven.smdb.service;
 import java.util.List;
 
 public interface BaseService<T, ID> {
-    T create(T clazz);
+    T create(T entity);
 
-    List<T> createAll(List<T> clazzes);
+    List<T> createAll(T... entities);
 
-    void update(T clazz);
+    List<T> createAll(List<T> entities);
 
-    void delete(T clazz);
+    void update(T entity);
+
+    void delete(T entity);
 
     void deleteById(ID id);
 
-    boolean exists(T clazz);
+    boolean exists(T entity);
 
     List<T> findAll();
 

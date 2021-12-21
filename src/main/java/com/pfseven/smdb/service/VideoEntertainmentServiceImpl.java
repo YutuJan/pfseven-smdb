@@ -2,9 +2,9 @@ package com.pfseven.smdb.service;
 
 import com.pfseven.smdb.domain.Position;
 import com.pfseven.smdb.domain.VideoEntertainment;
-import com.pfseven.smdb.repository.BaseRepository;
 import com.pfseven.smdb.repository.VideoEntertainmentRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -34,7 +34,7 @@ public class VideoEntertainmentServiceImpl extends BaseServiceImpl<VideoEntertai
     }
 
     @Override
-    BaseRepository<VideoEntertainment, Long> getRepository() {
+    JpaRepository<VideoEntertainment, Long> getRepository() {
         return videoEntertainmentRepository;
     }
 }

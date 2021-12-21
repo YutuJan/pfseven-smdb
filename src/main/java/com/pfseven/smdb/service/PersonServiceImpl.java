@@ -2,9 +2,9 @@ package com.pfseven.smdb.service;
 
 import com.pfseven.smdb.domain.Person;
 import com.pfseven.smdb.domain.Position;
-import com.pfseven.smdb.repository.BaseRepository;
 import com.pfseven.smdb.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -33,7 +33,7 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
     }
 
     @Override
-    BaseRepository<Person, Long> getRepository() {
+    JpaRepository<Person, Long> getRepository() {
         return personRepository;
     }
 }
