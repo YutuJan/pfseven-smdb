@@ -47,7 +47,7 @@ public class VideoEntertainment extends BaseModel {
     @Min(value = 1, message = "{rating.min}")
     @Max(value = 10, message = "{rating.max}")
     @Column(name = "RATING", nullable = false)
-    private Float rating;
+    private Double rating;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
