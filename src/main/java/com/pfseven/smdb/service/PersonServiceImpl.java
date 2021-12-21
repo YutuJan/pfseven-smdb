@@ -1,7 +1,7 @@
 package com.pfseven.smdb.service;
 
 import com.pfseven.smdb.domain.Person;
-import com.pfseven.smdb.domain.Position;
+import com.pfseven.smdb.domain.Occupation;
 import com.pfseven.smdb.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,12 +23,12 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
     }
 
     @Override
-    public void newPosition(Person person, Position position) {
+    public void newOccupation(Person person, Occupation occupation) {
 
     }
 
     @Override
-    public void removePosition(Person person, Position position) {
+    public void removeOccupation(Person person, Occupation occupation) {
 
     }
 

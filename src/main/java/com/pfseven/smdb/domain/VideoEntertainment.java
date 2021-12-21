@@ -17,7 +17,7 @@ import java.util.Set;
 @SuperBuilder
 @Entity
 @Table(name = "ENTERTAINMENT_VIDEOS")
-@SequenceGenerator(name = "idGenerator", sequenceName = "POSITIONS_SEQ", initialValue = 1, allocationSize = 1)
+@SequenceGenerator(name = "idGenerator", sequenceName = "ENTERTAINMENT_VIDEOS_SEQ", initialValue = 1, allocationSize = 1)
 public class VideoEntertainment extends BaseModel {
     @NotNull
     @Column(name = "TITLE", nullable = false, unique = true)
@@ -60,5 +60,5 @@ public class VideoEntertainment extends BaseModel {
     @EqualsAndHashCode.Exclude
     @OneToMany
     @Column(name = "CAST_N_CREW")
-    private Set<Position> castAndCrew = new HashSet<>();
+    private Set<Occupation> castAndCrew = new HashSet<>();
 }

@@ -1,6 +1,6 @@
 package com.pfseven.smdb.service;
 
-import com.pfseven.smdb.domain.Position;
+import com.pfseven.smdb.domain.Occupation;
 import com.pfseven.smdb.domain.VideoEntertainment;
 
 public interface VideoEntertainmentService extends BaseService<VideoEntertainment, Long> {
@@ -8,7 +8,7 @@ public interface VideoEntertainmentService extends BaseService<VideoEntertainmen
 
     VideoEntertainment find(String title);
 
-    void newPosition(VideoEntertainment videoEntertainment, Position position);
+    void newOccupation(VideoEntertainment videoEntertainment, Occupation occupation);
 
-    void removePosition(VideoEntertainment videoEntertainment, Position position);
+    void removeOccupation(VideoEntertainment videoEntertainment, Occupation occupation);
 }

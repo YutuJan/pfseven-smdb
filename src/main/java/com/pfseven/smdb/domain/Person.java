@@ -40,6 +40,6 @@ public class Person extends BaseModel {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany
-    @Column(name = "POSITIONS")
-    private Set<Position> positions = new HashSet<>();
+    @Column(name = "OCCUPATIONS")
+    private Set<Occupation> occupations = new HashSet<>();
 }

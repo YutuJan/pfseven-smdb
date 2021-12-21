@@ -1,6 +1,6 @@
 package com.pfseven.smdb.service;
 
-import com.pfseven.smdb.domain.Position;
+import com.pfseven.smdb.domain.Occupation;
 import com.pfseven.smdb.domain.VideoEntertainment;
 import com.pfseven.smdb.repository.VideoEntertainmentRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,12 +24,12 @@ public class VideoEntertainmentServiceImpl extends BaseServiceImpl<VideoEntertai
     }
 
     @Override
-    public void newPosition(VideoEntertainment videoEntertainment, Position position) {
+    public void newOccupation(VideoEntertainment videoEntertainment, Occupation occupation) {
 
     }
 
     @Override
-    public void removePosition(VideoEntertainment videoEntertainment, Position position) {
+    public void removeOccupation(VideoEntertainment videoEntertainment, Occupation occupation) {
 
     }
 

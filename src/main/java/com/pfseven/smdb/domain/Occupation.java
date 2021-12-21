@@ -13,13 +13,13 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @SuperBuilder
 @Entity
-@Table(name = "POSITIONS")
-@SequenceGenerator(name = "idGenerator", sequenceName = "POSITIONS_SEQ", initialValue = 1, allocationSize = 1)
-public class Position extends BaseModel {
+@Table(name = "OCCUPATIONS")
+@SequenceGenerator(name = "idGenerator", sequenceName = "OCCUPATIONS_SEQ", initialValue = 1, allocationSize = 1)
+public class Occupation extends BaseModel {
     @NotNull
     @Enumerated(EnumType.STRING)
-    @Column(name = "POSITION", nullable = false)
-    private FilmographyRole position;
+    @Column(name = "OCCUPATION", nullable = false)
+    private FilmographyRole occupation;
 
     @ManyToOne
     @MapsId("id")
