@@ -34,7 +34,7 @@ public class Person extends BaseModel {
     private String birthPlace;
 
     @NotNull
-    @Column(name = "BIOGRAPHY")
+    @Column(name = "BIOGRAPHY", length = 10000)
     private String biography;
 
     @ToString.Exclude

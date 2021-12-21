@@ -59,6 +59,6 @@ public class VideoEntertainment extends BaseModel {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany
-    @Column(name = "CAST_&_CREW", nullable = false)
+    @Column(name = "CAST_N_CREW")
     private Set<Position> castAndCrew = new HashSet<>();
 }

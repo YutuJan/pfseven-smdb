@@ -21,13 +21,11 @@ public class Position extends BaseModel {
     @Column(name = "POSITION", nullable = false)
     private FilmographyRole position;
 
-    @NotNull
-    @OneToOne
-    @JoinColumn(name = "VIDEO_ENTERTAINMENT")
+    @ManyToOne
+    @MapsId("id")
     private VideoEntertainment videoEntertainment;
 
-    @NotNull
-    @OneToOne
-    @JoinColumn(name = "PERSON")
+    @ManyToOne
+    @MapsId("id")
     private Person person;
 }

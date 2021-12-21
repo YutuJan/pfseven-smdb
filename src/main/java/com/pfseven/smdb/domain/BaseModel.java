@@ -14,6 +14,8 @@ import java.io.Serializable;
 @SuperBuilder
 @MappedSuperclass
 public abstract class BaseModel implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idGenerator")
     @Column(name = "ID")
