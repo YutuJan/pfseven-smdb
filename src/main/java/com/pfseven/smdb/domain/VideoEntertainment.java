@@ -24,7 +24,7 @@ public class VideoEntertainment extends BaseModel {
     private String title;
 
     @NotNull
-    @Column(name = "SUMMARY")
+    @Column(name = "SUMMARY", length = 1000)
     private String summary;
 
     @NotNull

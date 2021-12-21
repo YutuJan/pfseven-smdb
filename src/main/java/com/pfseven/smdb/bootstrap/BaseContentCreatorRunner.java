@@ -577,16 +577,8 @@ public class BaseContentCreatorRunner extends AbstractLogComponent implements Co
             " Rhapsody\" (2018). ";
 
     // TODO ADD FOLLOWING MOVIES
-    // Rush Hour
-    // Zorbas The Greek
-    // The Matrix
-    // The Terminator (1984)
-    // The Expendables
-    // Rockie
-    // The Big Lebowski
     // Mr Robot
     // Friends
-    // Ace Ventura
     // Dump and dumper
     // Bohemian Rhapsody
 
