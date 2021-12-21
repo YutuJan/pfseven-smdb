@@ -1,7 +1,10 @@
 package com.pfseven.smdb.bootstrap;
 
 import com.pfseven.smdb.base.AbstractLogComponent;
+import com.pfseven.smdb.domain.Genre;
 import com.pfseven.smdb.domain.Person;
+import com.pfseven.smdb.domain.VideoEntertainment;
+import com.pfseven.smdb.domain.VideoEntertainmentCategory;
 import com.pfseven.smdb.service.PersonService;
 import com.pfseven.smdb.service.VideoEntertainmentService;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Component
 @Profile("dev")
@@ -640,6 +644,12 @@ public class BaseContentCreatorRunner extends AbstractLogComponent implements Co
             " Barry. Monica becomes stressed when her and Ross's parents come to visit.";
 
     public void run(String... args) throws Exception {
+        createBunchOfPeople();
+        createBunchOfFilms();
+        createBunchOfTvShowEpisodes();
+    }
+
+    private void createBunchOfPeople() {
         List<Person> people = List.of(
                 Person.builder().firstName("Jackie").lastName("Chan")
                         .birthDate(LocalDate.of(1954, 4, 7))
@@ -726,4 +736,158 @@ public class BaseContentCreatorRunner extends AbstractLogComponent implements Co
         logger.info("Created {} products.", personService.createAll(people).size());
     }
 
+
+    private void createBunchOfFilms() {
+        List<VideoEntertainment> videoEntertainments = List.of(
+                VideoEntertainment.builder()
+                        .title("The Matrix")
+                        .summary(SUMMARY_000)
+                        .durationInSeconds(8160)
+                        .releaseDate(LocalDate.of(1999, 3, 31))
+                        .distributor("Warner Bros. Pictures")
+                        .videoEntertainmentCategory(VideoEntertainmentCategory.FILM)
+                        .rating(8.7)
+                        .genres(Set.of(Genre.ACTION, Genre.SCI_FI))
+                        .build(),
+                VideoEntertainment.builder()
+                        .title("Zorba the Greek")
+                        .summary(SUMMARY_001)
+                        .durationInSeconds(8520)
+                        .releaseDate(LocalDate.of(1964, 12, 14))
+                        .distributor("Michael Cacoyannis") //TODO may not be accurate
+                        .videoEntertainmentCategory(VideoEntertainmentCategory.FILM)
+                        .rating(7.7)
+                        .genres(Set.of(Genre.DRAMA))
+                        .build(),
+                VideoEntertainment.builder()
+                        .title("Rush Hour")
+                        .summary(SUMMARY_002)
+                        .durationInSeconds(5880)
+                        .releaseDate(LocalDate.of(2007, 5, 22))
+                        .distributor("New Line Cinema")
+                        .videoEntertainmentCategory(VideoEntertainmentCategory.FILM)
+                        .rating(7.0)
+                        .genres(Set.of(Genre.ACTION, Genre.COMEDY, Genre.SPORTS_AND_FITNESS))
+                        .build(),
+                VideoEntertainment.builder()
+                        .title("The Terminator")
+                        .summary(SUMMARY_003)
+                        .durationInSeconds(6480)
+                        .releaseDate(LocalDate.of(2001, 10, 2))
+                        .distributor("Orion Pictures")
+                        .videoEntertainmentCategory(VideoEntertainmentCategory.FILM)
+                        .rating(7.6)
+                        .genres(Set.of(Genre.ACTION, Genre.MYSTERY, Genre.THRILLER, Genre.SCI_FI))
+                        .build(),
+                VideoEntertainment.builder()
+                        .title("The Expendables")
+                        .summary(SUMMARY_004)
+                        .durationInSeconds(6180)
+                        .releaseDate(LocalDate.of(2010, 8, 13))
+                        .distributor("Lionsgate Films")
+                        .videoEntertainmentCategory(VideoEntertainmentCategory.FILM)
+                        .rating(6.5)
+                        .genres(Set.of(Genre.ACTION, Genre.ADVENTURE))
+                        .build(),
+                VideoEntertainment.builder()
+                        .title("Rocky")
+                        .summary(SUMMARY_005)
+                        .durationInSeconds(7140)
+                        .releaseDate(LocalDate.of(1976, 12, 1))
+                        .distributor("United Artists")
+                        .videoEntertainmentCategory(VideoEntertainmentCategory.FILM)
+                        .rating(8.1)
+                        .genres(Set.of(Genre.DRAMA))
+                        .build(),
+                VideoEntertainment.builder()
+                        .title("The Big Lebowski")
+                        .summary(SUMMARY_006)
+                        .durationInSeconds(7020)
+                        .releaseDate(LocalDate.of(1998, 3, 6))
+                        .distributor("Gramercy Pictures")
+                        .videoEntertainmentCategory(VideoEntertainmentCategory.FILM)
+                        .rating(8.1)
+                        .genres(Set.of(Genre.COMEDY))
+                        .build(),
+                VideoEntertainment.builder()
+                        .title("Ace Ventura: Pet Detective")
+                        .summary(SUMMARY_007)
+                        .durationInSeconds(5160)
+                        .releaseDate(LocalDate.of(1994, 2, 4))
+                        .distributor("Argentina Video Home, Warner Bros.")
+                        .videoEntertainmentCategory(VideoEntertainmentCategory.FILM)
+                        .rating(6.9)
+                        .genres(Set.of(Genre.COMEDY))
+                        .build(),
+                VideoEntertainment.builder()
+                        .title("Dumb & Dumber")
+                        .summary(SUMMARY_008)
+                        .durationInSeconds(6360)
+                        .releaseDate(LocalDate.of(2001, 10, 2))
+                        .distributor("New Line Cinema")
+                        .videoEntertainmentCategory(VideoEntertainmentCategory.FILM)
+                        .rating(7.3)
+                        .genres(Set.of(Genre.COMEDY))
+                        .build(),
+                VideoEntertainment.builder()
+                        .title("Bohemian Rhapsody")
+                        .summary(SUMMARY_009)
+                        .durationInSeconds(8100)
+                        .releaseDate(LocalDate.of(2018, 11, 2))
+                        .distributor("20th Century Studios")
+                        .videoEntertainmentCategory(VideoEntertainmentCategory.FILM)
+                        .rating(7.9)
+                        .genres(Set.of(Genre.DRAMA, Genre.LGBTQ, Genre.HISTORY, Genre.BIOGRAPHY, Genre.MUSIC))
+                        .build()
+        );
+
+        logger.info("Created {} products.", videoEntertainmentService.createAll(videoEntertainments).size());
+    }
+
+    private void createBunchOfTvShowEpisodes(){
+        List<VideoEntertainment> videoEntertainments = List.of(
+                VideoEntertainment.builder()
+                        .title("Mr. Robot: Season 1: HelloFriend")
+                        .summary(SUMMARY_010)
+                        .durationInSeconds(3720)
+                        .releaseDate(LocalDate.of(2015, 6, 24))
+                        .distributor("NBCUniversal Television Distribution")
+                        .videoEntertainmentCategory(VideoEntertainmentCategory.TV_SHOW_EPISODE)
+                        .rating(9.3)
+                        .genres(Set.of(Genre.DRAMA, Genre.MYSTERY, Genre.THRILLER, Genre.CRIME))
+                        .build(),
+                VideoEntertainment.builder()
+                        .title("Mr. Robot: Season 1: ones-and-zer0es")
+                        .summary(SUMMARY_011)
+                        .durationInSeconds(2880)
+                        .releaseDate(LocalDate.of(2015, 7, 1))
+                        .distributor("NBCUniversal Television Distribution")
+                        .videoEntertainmentCategory(VideoEntertainmentCategory.TV_SHOW_EPISODE)
+                        .rating(8.6)
+                        .genres(Set.of(Genre.DRAMA, Genre.MYSTERY, Genre.THRILLER, Genre.CRIME))
+                        .build(),
+                VideoEntertainment.builder()
+                        .title("Friends: Season 1: The One Where Monica Gets a Roommate")
+                        .summary(SUMMARY_012)
+                        .durationInSeconds(1320)
+                        .releaseDate(LocalDate.of(1994, 9, 22))
+                        .distributor("National Broadcasting Company (NBC)")
+                        .videoEntertainmentCategory(VideoEntertainmentCategory.TV_SHOW_EPISODE)
+                        .rating(8.3)
+                        .genres(Set.of(Genre.COMEDY))
+                        .build(),
+                VideoEntertainment.builder()
+                        .title("Friends: Season 1: The One With the Sonogram at the End")
+                        .summary(SUMMARY_013)
+                        .durationInSeconds(1320)
+                        .releaseDate(LocalDate.of(1994, 9, 29))
+                        .distributor("National Broadcasting Company (NBC)")
+                        .videoEntertainmentCategory(VideoEntertainmentCategory.TV_SHOW_EPISODE)
+                        .rating(8.0)
+                        .genres(Set.of(Genre.COMEDY))
+                        .build()
+        );
+
+        logger.info("Created {} products.", videoEntertainmentService.createAll(videoEntertainments).size());
+    }
 }
