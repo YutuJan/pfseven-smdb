@@ -16,9 +16,8 @@ import java.util.Set;
 @AllArgsConstructor
 @SuperBuilder
 @Entity
-@Table(name = "ENTERTAINMENT_VIDEOS")
-@SequenceGenerator(name = "idGenerator", sequenceName = "ENTERTAINMENT_VIDEOS_SEQ", initialValue = 1, allocationSize = 1)
-public class VideoEntertainment extends BaseModel {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class VideoEntertainment extends BaseModel {
     @NotNull
     @Column(name = "TITLE", nullable = false, unique = true)
     private String title;
@@ -35,26 +34,14 @@ public class VideoEntertainment extends BaseModel {
     @Column(name = "RELEASE_DATE", nullable = false)
     private LocalDate releaseDate;
 
-    @NotNull
-    @Column(name = "DISTRIBUTOR", nullable = false)
-    private String distributor;
-
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    @Column(name = "CATEGORY", nullable = false)
-    private VideoEntertainmentCategory videoEntertainmentCategory;
-
     @Min(value = 1, message = "{rating.min}")
     @Max(value = 10, message = "{rating.max}")
     @Column(name = "RATING", nullable = false)
     private Double rating;
 
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    @ElementCollection
-    @Enumerated(EnumType.STRING)
-    @Column(name = "GENRE", nullable = false)
-    private Set<Genre> genres = new HashSet<>();
+    @NotNull
+    @Column(name = "DISTRIBUTOR", nullable = false)
+    private String distributor;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
