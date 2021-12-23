@@ -31,7 +31,6 @@ public abstract class VideoEntertainment extends BaseModel {
     private Integer durationInSeconds;
 
     @NotNull
-    @Temporal(TemporalType.DATE)
     @Column(name = "RELEASE_DATE", nullable = false)
     private LocalDate releaseDate;
 
