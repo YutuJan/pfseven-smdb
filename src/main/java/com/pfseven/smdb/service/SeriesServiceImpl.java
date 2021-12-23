@@ -31,7 +31,7 @@ public class SeriesServiceImpl extends BaseServiceImpl<Series> implements Series
 
         boolean seasonAlreadyExists = false;
         for (Season s : series.getSeasons()) {
-            if (s.getTitle().equals(series.getTitle())) {
+            if (s.getNumber().equals(season.getNumber())) {
                 seasonAlreadyExists = true;
                 break;
             }
@@ -39,6 +39,7 @@ public class SeriesServiceImpl extends BaseServiceImpl<Series> implements Series
 
         if (!seasonAlreadyExists) {
             series.getSeasons().add(season);
+            season.setSeries(series);
         }
 
         logger.debug("Season[{}] added to Series[{}]", season, series);
@@ -51,7 +52,7 @@ public class SeriesServiceImpl extends BaseServiceImpl<Series> implements Series
         }
 
         for (Season s : series.getSeasons()) {
-            if (s.getTitle().equals(season.getTitle())) {
+            if (s.getNumber().equals(season.getNumber())) {
                 series.getSeasons().remove(s);
                 break;
             }
@@ -76,6 +77,7 @@ public class SeriesServiceImpl extends BaseServiceImpl<Series> implements Series
 
         if (!episodeAlreadyExists) {
             season.getEpisodes().add(episode);
+            episode.setSeason(season);
         }
 
         logger.debug("Episode[{}] added to Season[{}]", episode, season);
@@ -88,7 +90,7 @@ public class SeriesServiceImpl extends BaseServiceImpl<Series> implements Series
         }
 
         for (Episode e : season.getEpisodes()) {
-            if (e.getTitle().equals(e.getTitle())) {
+            if (e.getTitle().equals(episode.getTitle())) {
                 season.getEpisodes().remove(e);
                 break;
             }
