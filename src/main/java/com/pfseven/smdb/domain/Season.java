@@ -17,7 +17,7 @@ import java.util.Set;
 public class Season extends BaseModel {
     @NotNull
     @Column(name = "TITLE", nullable = false)
-    private String title;
+    private Integer number;
 
     @NotNull
     @ToString.Exclude

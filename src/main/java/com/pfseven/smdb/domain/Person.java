@@ -26,7 +26,6 @@ public class Person extends BaseModel {
     private String lastName;
 
     @NotNull
-    @Temporal(TemporalType.DATE)
     @Column(name = "BIRTH_DATE", nullable = false)
     private LocalDate birthDate;
 

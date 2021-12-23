@@ -21,9 +21,14 @@ public class Series extends BaseModel {
     private String title;
 
     @NotNull
+    @Column(name = "SERIES_INFO", length = 1000, nullable = false)
+    private String info;
+
+    @NotNull
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany
+    @Column(name = "SEASONS")
     private Set<Season> seasons;
 
     @NotNull

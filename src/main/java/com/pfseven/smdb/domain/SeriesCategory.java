@@ -4,5 +4,6 @@ public enum SeriesCategory {
     SOAP_OPERA,
     ANIMATED,
     ANIME,
-    REALITY
+    REALITY,
+    TV_SERIES
 }
