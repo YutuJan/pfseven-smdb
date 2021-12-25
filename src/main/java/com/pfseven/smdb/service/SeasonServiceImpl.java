@@ -1,7 +1,6 @@
 package com.pfseven.smdb.service;
 
 import com.pfseven.smdb.domain.Episode;
-import com.pfseven.smdb.domain.Season;
 import com.pfseven.smdb.repository.SeasonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;

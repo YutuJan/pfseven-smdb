@@ -1,9 +1,6 @@
 package com.pfseven.smdb.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
@@ -17,9 +14,12 @@ import javax.validation.constraints.NotNull;
 @Table(name = "EPISODES")
 @SequenceGenerator(name = "idGenerator", sequenceName = "EPISODES_SEQ", initialValue = 1, allocationSize = 1)
 public class Episode extends VideoEntertainment {
-    @NotNull
-    @ToString.Exclude
-    @ManyToOne
-    @MapsId("id")
-    private Season season;
+
+    @NotNull(message = "Season's number cannot be null")
+    @Column(name = "SEASON", nullable = false)
+    private Integer season;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "SERIES_ID", referencedColumnName = "ID")
+    private Series series;
 }

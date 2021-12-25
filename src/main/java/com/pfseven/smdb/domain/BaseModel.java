@@ -13,7 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @SuperBuilder
 @MappedSuperclass
-public abstract class BaseModel implements Serializable {
+public class BaseModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id

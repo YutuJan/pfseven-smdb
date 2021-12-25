@@ -1,7 +1,6 @@
 package com.pfseven.smdb.service;
 
 import com.pfseven.smdb.domain.Episode;
-import com.pfseven.smdb.domain.Season;
 
 public interface SeasonService extends BaseService<Season, Long> {
     Season get(String title);

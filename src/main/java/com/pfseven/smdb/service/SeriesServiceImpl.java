@@ -1,6 +1,5 @@
 package com.pfseven.smdb.service;
 
-import com.pfseven.smdb.domain.Season;
 import com.pfseven.smdb.domain.Series;
 import com.pfseven.smdb.repository.SeriesRepository;
 import lombok.RequiredArgsConstructor;

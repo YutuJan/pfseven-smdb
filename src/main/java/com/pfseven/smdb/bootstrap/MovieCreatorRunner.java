@@ -3,7 +3,6 @@ package com.pfseven.smdb.bootstrap;
 import com.pfseven.smdb.base.AbstractLogComponent;
 import com.pfseven.smdb.domain.Genre;
 import com.pfseven.smdb.domain.Movie;
-import com.pfseven.smdb.domain.MovieCategory;
 import com.pfseven.smdb.service.MovieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -87,7 +86,6 @@ public class MovieCreatorRunner extends AbstractLogComponent implements CommandL
                         .durationInSeconds(8160)
                         .releaseDate(LocalDate.of(1999, 3, 31))
                         .distributor("Warner Bros. Pictures")
-                        .movieCategory(MovieCategory.HOLLYWOOD)
                         .rating(8.7)
                         .genres(Set.of(Genre.ACTION, Genre.SCI_FI))
                         .build(),
@@ -97,7 +95,6 @@ public class MovieCreatorRunner extends AbstractLogComponent implements CommandL
                         .durationInSeconds(8520)
                         .releaseDate(LocalDate.of(1964, 12, 14))
                         .distributor("Michael Cacoyannis") //TODO may not be accurate
-                        .movieCategory(MovieCategory.HOLLYWOOD)
                         .rating(7.7)
                         .genres(Set.of(Genre.DRAMA))
                         .build(),
@@ -107,7 +104,6 @@ public class MovieCreatorRunner extends AbstractLogComponent implements CommandL
                         .durationInSeconds(5880)
                         .releaseDate(LocalDate.of(2007, 5, 22))
                         .distributor("New Line Cinema")
-                        .movieCategory(MovieCategory.HOLLYWOOD)
                         .rating(7.0)
                         .genres(Set.of(Genre.ACTION, Genre.COMEDY, Genre.SPORTS_AND_FITNESS))
                         .build(),
@@ -117,7 +113,6 @@ public class MovieCreatorRunner extends AbstractLogComponent implements CommandL
                         .durationInSeconds(6480)
                         .releaseDate(LocalDate.of(2001, 10, 2))
                         .distributor("Orion Pictures")
-                        .movieCategory(MovieCategory.HOLLYWOOD)
                         .rating(7.6)
                         .genres(Set.of(Genre.ACTION, Genre.MYSTERY, Genre.THRILLER, Genre.SCI_FI))
                         .build(),
@@ -127,7 +122,6 @@ public class MovieCreatorRunner extends AbstractLogComponent implements CommandL
                         .durationInSeconds(6180)
                         .releaseDate(LocalDate.of(2010, 8, 13))
                         .distributor("Lionsgate Films")
-                        .movieCategory(MovieCategory.HOLLYWOOD)
                         .rating(6.5)
                         .genres(Set.of(Genre.ACTION, Genre.ADVENTURE))
                         .build(),
@@ -137,7 +131,6 @@ public class MovieCreatorRunner extends AbstractLogComponent implements CommandL
                         .durationInSeconds(7140)
                         .releaseDate(LocalDate.of(1976, 12, 1))
                         .distributor("United Artists")
-                        .movieCategory(MovieCategory.HOLLYWOOD)
                         .rating(8.1)
                         .genres(Set.of(Genre.DRAMA))
                         .build(),
@@ -147,7 +140,6 @@ public class MovieCreatorRunner extends AbstractLogComponent implements CommandL
                         .durationInSeconds(7020)
                         .releaseDate(LocalDate.of(1998, 3, 6))
                         .distributor("Gramercy Pictures")
-                        .movieCategory(MovieCategory.HOLLYWOOD)
                         .rating(8.1)
                         .genres(Set.of(Genre.COMEDY))
                         .build(),
@@ -157,7 +149,6 @@ public class MovieCreatorRunner extends AbstractLogComponent implements CommandL
                         .durationInSeconds(5160)
                         .releaseDate(LocalDate.of(1994, 2, 4))
                         .distributor("Argentina Video Home, Warner Bros.")
-                        .movieCategory(MovieCategory.HOLLYWOOD)
                         .rating(6.9)
                         .genres(Set.of(Genre.COMEDY))
                         .build(),
@@ -167,7 +158,6 @@ public class MovieCreatorRunner extends AbstractLogComponent implements CommandL
                         .durationInSeconds(6360)
                         .releaseDate(LocalDate.of(2001, 10, 2))
                         .distributor("New Line Cinema")
-                        .movieCategory(MovieCategory.HOLLYWOOD)
                         .rating(7.3)
                         .genres(Set.of(Genre.COMEDY))
                         .build(),
@@ -177,9 +167,8 @@ public class MovieCreatorRunner extends AbstractLogComponent implements CommandL
                         .durationInSeconds(8100)
                         .releaseDate(LocalDate.of(2018, 11, 2))
                         .distributor("20th Century Studios")
-                        .movieCategory(MovieCategory.HOLLYWOOD)
                         .rating(7.9)
-                        .genres(Set.of(Genre.DRAMA, Genre.LGBTQ, Genre.HISTORY, Genre.BIOGRAPHY, Genre.MUSIC))
+                        .genres(Set.of(Genre.DRAMA, Genre.LGBTQ, Genre.HISTORY, Genre.BIOGRAPHY, Genre.MUSICAL))
                         .build()
         );
 

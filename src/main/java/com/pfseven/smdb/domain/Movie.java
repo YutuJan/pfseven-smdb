@@ -16,15 +16,11 @@ import java.util.Set;
 @Table(name = "MOVIES")
 @SequenceGenerator(name = "idGenerator", sequenceName = "MOVIES_SEQ", initialValue = 1, allocationSize = 1)
 public class Movie extends VideoEntertainment {
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    @Column(name = "CATEGORY", nullable = false)
-    private MovieCategory movieCategory;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @ElementCollection
     @Enumerated(EnumType.STRING)
-    @Column(name = "GENRE", nullable = false)
+    @Column(name = "GENRES", nullable = false)
     private Set<Genre> genres = new HashSet<>();
 }

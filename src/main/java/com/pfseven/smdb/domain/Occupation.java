@@ -16,16 +16,17 @@ import javax.validation.constraints.NotNull;
 @Table(name = "OCCUPATIONS")
 @SequenceGenerator(name = "idGenerator", sequenceName = "OCCUPATIONS_SEQ", initialValue = 1, allocationSize = 1)
 public class Occupation extends BaseModel {
+
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "OCCUPATION", nullable = false)
-    private FilmographyRole occupation;
+    private RoleType occupation;
 
     @ManyToOne
     @MapsId("id")
     private VideoEntertainment videoEntertainment;
 
-    @ManyToOne
-    @MapsId("id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "PERSON_ID", referencedColumnName = "ID")
     private Person person;
 }

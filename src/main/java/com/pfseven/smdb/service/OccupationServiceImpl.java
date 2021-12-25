@@ -1,6 +1,6 @@
 package com.pfseven.smdb.service;
 
-import com.pfseven.smdb.domain.FilmographyRole;
+import com.pfseven.smdb.domain.RoleType;
 import com.pfseven.smdb.domain.Occupation;
 import com.pfseven.smdb.repository.OccupationRepository;
 import lombok.RequiredArgsConstructor;
@@ -30,12 +30,12 @@ public class OccupationServiceImpl extends BaseServiceImpl<Occupation> implement
     }
 
     @Override
-    public List<Occupation> findAll(FilmographyRole role) {
+    public List<Occupation> findAll(RoleType role) {
         return null;
     }
 
     @Override
-    public List<Occupation> getAll(FilmographyRole role) {
+    public List<Occupation> getAll(RoleType role) {
         return null;
     }
 }

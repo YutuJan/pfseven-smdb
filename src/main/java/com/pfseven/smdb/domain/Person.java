@@ -17,29 +17,25 @@ import java.util.Set;
 @Table(name = "PEOPLE")
 @SequenceGenerator(name = "idGenerator", sequenceName = "PEOPLE_SEQ", initialValue = 1, allocationSize = 1)
 public class Person extends BaseModel {
-    @NotNull
+    @NotNull(message = "Person's firstname cannot be null")
     @Column(name = "FIRST_NAME", nullable = false)
     private String firstName;
 
-    @NotNull
+    @NotNull(message = "Person's lastname cannot be null")
     @Column(name = "LAST_NAME", nullable = false)
     private String lastName;
 
-    @NotNull
+    @NotNull(message = "Person's birthdate cannot be null")
     @Column(name = "BIRTH_DATE", nullable = false)
     private LocalDate birthDate;
 
-    @NotNull
-    @Column(name = "BIRTH_PLACE", nullable = false)
-    private String birthPlace;
-
-    @NotNull
-    @Column(name = "BIOGRAPHY", length = 10000)
-    private String biography;
+    @NotNull(message = "Person's address cannot be null")
+    @Column(name = "ADDRESS")
+    private String address;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @OneToMany
     @Column(name = "OCCUPATIONS")
+    @OneToMany
     private Set<Occupation> occupations = new HashSet<>();
 }

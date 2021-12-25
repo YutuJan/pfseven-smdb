@@ -1,6 +1,5 @@
 package com.pfseven.smdb.service;
 
-import com.pfseven.smdb.domain.Season;
 import com.pfseven.smdb.domain.Series;
 
 public interface SeriesService extends BaseService<Series, Long> {

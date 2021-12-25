@@ -16,17 +16,17 @@ import java.util.Set;
 @Table(name = "SERIES")
 @SequenceGenerator(name = "idGenerator", sequenceName = "SERIES_SEQ", initialValue = 1, allocationSize = 1)
 public class Series extends BaseModel {
-    @NotNull
+
+    @NotNull(message = "Series' title cannot be null")
     @Column(name = "TITLE", nullable = false, unique = true)
     private String title;
 
-    @NotNull
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @OneToMany
-    private Set<Season> seasons;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "series", targetEntity = Episode.class)
+    private Set<Episode> episodes;
 
-    @NotNull
+
     @Enumerated(EnumType.STRING)
     @Column(name = "CATEGORY", nullable = false)
     private SeriesCategory seriesCategory;
@@ -35,6 +35,6 @@ public class Series extends BaseModel {
     @EqualsAndHashCode.Exclude
     @ElementCollection
     @Enumerated(EnumType.STRING)
-    @Column(name = "GENRE", nullable = false)
+    @Column(name = "GENRES", nullable = false)
     private Set<Genre> genres = new HashSet<>();
 }

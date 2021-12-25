@@ -11,11 +11,15 @@ public enum Genre {
     THRILLER,
     WESTERN,
     SCI_FI,
-    SPORTS_AND_FITNESS,
     ADVENTURE,
     LGBTQ,
     HISTORY,
     BIOGRAPHY,
-    MUSIC,
-    CRIME
+    ADULT,
+    CRIME,
+    ANIMATION,
+    WAR,
+    MUSICAL,
+    SPORTS,
+    DEVOTIONAL
 }
