@@ -584,83 +584,103 @@ public class PeopleCreatorRunner extends AbstractLogComponent implements Command
                 Person.builder().firstName("Jackie").lastName("Chan")
                         .birthDate(LocalDate.of(1954, 4, 7))
                         .birthPlace("Victoria Peak, Hong Kong")
-                        .biography(BIO_000).build(),
+                        .biography(BIO_000)
+                        .build(),
                 Person.builder().firstName("Chris").lastName("Tucker")
                         .birthDate(LocalDate.of(1972, 8, 31))
                         .birthPlace("Atlanta, Georgia, USA")
-                        .biography(BIO_001).build(),
+                        .biography(BIO_001)
+                        .build(),
                 Person.builder().firstName("Anthony").lastName("Quinn")
                         .birthDate(LocalDate.of(1915, 4, 21))
                         .birthPlace("Chihuahua, Mexico")
-                        .biography(BIO_002).build(),
+                        .biography(BIO_002)
+                        .build(),
                 Person.builder().firstName("Keanu").lastName("Reeves")
                         .birthDate(LocalDate.of(1964, 9, 2))
                         .birthPlace("Beirut, Lebanon")
-                        .biography(BIO_003).build(),
+                        .biography(BIO_003)
+                        .build(),
                 Person.builder().firstName("Carrie-Anne").lastName("Moss")
                         .birthDate(LocalDate.of(1967, 8, 21))
                         .birthPlace("Vancouver, British Columbia, Canada")
-                        .biography(BIO_004).build(),
+                        .biography(BIO_004)
+                        .build(),
                 Person.builder().firstName("Laurence").lastName("Fishburne")
                         .birthDate(LocalDate.of(1961, 7, 30))
                         .birthPlace("Augusta, Georgia, USA")
-                        .biography(BIO_005).build(),
+                        .biography(BIO_005)
+                        .build(),
                 Person.builder().firstName("Arnold").lastName("Schwarzenegger")
                         .birthDate(LocalDate.of(1947, 7, 30))
                         .birthPlace("Thal, Styria, Austria")
-                        .biography(BIO_006).build(),
+                        .biography(BIO_006)
+                        .build(),
                 Person.builder().firstName("Linda").lastName("Hamilton")
                         .birthDate(LocalDate.of(1956, 9, 26))
                         .birthPlace("Salisbury, Maryland, USA")
-                        .biography(BIO_007).build(),
+                        .biography(BIO_007)
+                        .build(),
                 Person.builder().firstName("Milla").lastName("Jovovich")
                         .birthDate(LocalDate.of(1975, 12, 17))
                         .birthPlace(" Kiev, Ukrainian SSR, USSR")
-                        .biography(BIO_008).build(),
+                        .biography(BIO_008)
+                        .build(),
                 Person.builder().firstName("Bruce").lastName("Willis")
                         .birthDate(LocalDate.of(1955, 3, 19))
                         .birthPlace("Idar-Oberstein, West Germany")
-                        .biography(BIO_009).build(),
+                        .biography(BIO_009)
+                        .build(),
                 Person.builder().firstName("Sylvester").lastName("Stallone")
                         .birthDate(LocalDate.of(1946, 7, 6))
                         .birthPlace("New York, New York, USA")
-                        .biography(BIO_010).build(),
+                        .biography(BIO_010)
+                        .build(),
                 Person.builder().firstName("Dolph").lastName("Lundgren")
                         .birthDate(LocalDate.of(1957, 11, 3))
                         .birthPlace("Stockholm, Stockholms län, Sweden")
-                        .biography(BIO_011).build(),
+                        .biography(BIO_011)
+                        .build(),
                 Person.builder().firstName("Jeff").lastName("Bridges")
                         .birthDate(LocalDate.of(1949, 12, 4))
                         .birthPlace("Los Angeles, California, USA")
-                        .biography(BIO_012).build(),
+                        .biography(BIO_012)
+                        .build(),
                 Person.builder().firstName("Julianne").lastName("Moore")
                         .birthDate(LocalDate.of(1960, 12, 3))
                         .birthPlace("Birthplace: Fayetteville, North Carolina, USA")
-                        .biography(BIO_013).build(),
+                        .biography(BIO_013)
+                        .build(),
                 Person.builder().firstName("Rami").lastName("Malek")
                         .birthDate(LocalDate.of(1981, 5, 12))
                         .birthPlace("Los Angeles, California, USA")
-                        .biography(BIO_014).build(),
+                        .biography(BIO_014)
+                        .build(),
                 Person.builder().firstName("Jennifer").lastName("Aniston")
                         .birthDate(LocalDate.of(1969, 2, 11))
                         .birthPlace("Sherman Oaks, California, USA")
-                        .biography(BIO_015).build(),
+                        .biography(BIO_015)
+                        .build(),
                 Person.builder().firstName("Courteney").lastName("Cox")
                         .birthDate(LocalDate.of(1964, 6, 15))
                         .birthPlace("Birmingham, Alabama, USA")
-                        .biography(BIO_016).build(),
+                        .biography(BIO_016)
+                        .build(),
                 Person.builder().firstName("Jim").lastName("Carrey")
                         .birthDate(LocalDate.of(1962, 1, 17))
                         .birthPlace("Newmarket, Ontario, Canada")
-                        .biography(BIO_017).build(),
+                        .biography(BIO_017)
+                        .build(),
                 Person.builder().firstName("Jeff").lastName("Daniels")
                         .birthDate(LocalDate.of(1955, 2, 19))
                         .birthPlace("Athens, Georgia, USA")
-                        .biography(BIO_018).build(),
+                        .biography(BIO_018)
+                        .build(),
                 Person.builder().firstName("Lucy").lastName("Boynton")
                         .birthDate(LocalDate.of(1994, 1, 17))
                         .birthPlace("New York, New York, USA")
-                        .biography(BIO_019).build()
+                        .biography(BIO_019)
+                        .build()
         );
 
         logger.info("Created {} products.", personService.createAll(people).size());

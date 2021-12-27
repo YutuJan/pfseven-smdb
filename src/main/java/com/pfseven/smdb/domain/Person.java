@@ -29,9 +29,13 @@ public class Person extends BaseModel {
     @Column(name = "BIRTH_DATE", nullable = false)
     private LocalDate birthDate;
 
-    @NotNull(message = "Person's address cannot be null")
-    @Column(name = "ADDRESS")
-    private String address;
+    @NotNull
+    @Column(name = "BIRTH_PLACE", nullable = false)
+    private String birthPlace;
+
+    @NotNull
+    @Column(name = "BIOGRAPHY", length = 10000)
+    private String biography;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
