@@ -21,6 +21,10 @@ public class Series extends BaseModel {
     @Column(name = "TITLE", nullable = false, unique = true)
     private String title;
 
+    @NotNull(message = "Series' info cannot be null")
+    @Column(name = "INFO", length = 1000, nullable = false)
+    private String info;
+
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "series", targetEntity = Episode.class)
