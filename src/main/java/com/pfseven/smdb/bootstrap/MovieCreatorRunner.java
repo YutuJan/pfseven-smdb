@@ -105,7 +105,7 @@ public class MovieCreatorRunner extends AbstractLogComponent implements CommandL
                         .releaseDate(LocalDate.of(2007, 5, 22))
                         .distributor("New Line Cinema")
                         .rating(7.0)
-                        .genres(Set.of(Genre.ACTION, Genre.COMEDY, Genre.SPORTS_AND_FITNESS))
+                        .genres(Set.of(Genre.ACTION, Genre.COMEDY, Genre.SPORTS))
                         .build(),
                 Movie.builder()
                         .title("The Terminator")

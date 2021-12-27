@@ -12,27 +12,70 @@ import org.springframework.stereotype.Service;
 public class EpisodeServiceImpl extends BaseServiceImpl<Episode> implements EpisodeService {
     private final EpisodeRepository episodeRepository;
 
+    JpaRepository<Episode, Long> getRepository() {
+        return episodeRepository;
+    }
+
     @Override
     public Episode get(String title) {
-        return null;
+        return episodeRepository.getEpisodeByTitle(title);
     }
 
     @Override
     public Episode find(String title) {
-        return null;
+        return episodeRepository.findEpisodeByTitle(title);
     }
 
     @Override
-    public void newCastAndCrew(Episode episode, Occupation occupation) {
+    public void addOccupationToCastAndCrew(Episode episode, Occupation occupation) {
+        if (isNull(occupation) || isNull(episode)) {
+            return;
+        }
 
+        boolean occupationAlreadyExists = false;
+        for (Occupation o : episode.getCastAndCrew()) {
+            if (o.equals(occupation)) {
+                occupationAlreadyExists = true;
+                break;
+            }
+        }
+
+        if (!occupationAlreadyExists) {
+            episode.getCastAndCrew().add(occupation);
+        }
+
+        logger.debug("Occupation[{}] added to Episode[{}]", occupation, episode);
     }
 
     @Override
-    public void removeCastAndCrew(Episode episode, Occupation occupation) {
+    public void removeOccupationToCastAndCrew(Episode episode, Occupation occupation) {
+        if (isNull(occupation) || isNull(episode)) {
+            return;
+        }
 
+        for (Occupation o : episode.getCastAndCrew()) {
+            if (o.equals(occupation)) {
+                episode.getCastAndCrew().remove(occupation);
+                break;
+            }
+        }
+
+        logger.debug("Occupation[{}] removed to Episode[{}]", occupation, episode);
     }
 
-    JpaRepository<Episode, Long> getRepository() {
-        return episodeRepository;
+    @Override
+    public void updateOccupationToCastAndCrew(Episode episode, Occupation occupation) {
+        removeOccupationToCastAndCrew(episode, occupation);
+        addOccupationToCastAndCrew(episode, occupation);
+
+        logger.debug("Occupation[{}] updated to Episode[{}]", occupation, episode);
+    }
+
+
+    private boolean isNull(Object object) {
+        if (object == null) {
+            return true;
+        }
+        return false;
     }
 }

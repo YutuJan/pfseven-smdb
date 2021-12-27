@@ -1,13 +1,18 @@
 package com.pfseven.smdb.service;
 
+import com.pfseven.smdb.domain.Episode;
 import com.pfseven.smdb.domain.Series;
+
+import java.util.List;
 
 public interface SeriesService extends BaseService<Series, Long> {
     Series get(String title);
 
     Series find(String title);
 
-    void newSeason(Series series, Season season);
+    void addEpisode(Series series, Episode episode);
 
-    void removeSeason(Series series, Season season);
+    void updateEpisode(Series series, Episode episode);
+
+    void removeEpisode(Series series, Episode episode);
 }

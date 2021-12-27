@@ -23,6 +23,9 @@ public class SeriesCreatorRunner extends AbstractLogComponent implements Command
     private final String SUMMARY_003 = "Ross finds out his ex-wife is pregnant. Rachel returns her engagement ring to" +
             " Barry. Monica becomes stressed when her and Ross's parents come to visit.";
 
+    private final String TITLE_001 = "Mr. Robot";
+    private final String TITLE_002 = "Friends";
+
     @Override
     public void run(String... args) throws Exception {
         createBunchOfTvShowEpisodes();
