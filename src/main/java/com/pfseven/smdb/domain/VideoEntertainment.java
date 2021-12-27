@@ -17,7 +17,7 @@ import java.util.Set;
 @SuperBuilder
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class VideoEntertainment extends BaseModel {
+public abstract class VideoEntertainment extends BaseModel {
     @NotNull(message = "Movie's title cannot be null")
     @Column(name = "TITLE", nullable = false, unique = true)
     private String title;
