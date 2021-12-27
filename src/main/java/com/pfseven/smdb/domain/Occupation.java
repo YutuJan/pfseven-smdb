@@ -23,7 +23,7 @@ public class Occupation extends BaseModel {
     private RoleType occupation;
 
     @ManyToOne
-    @MapsId("id")
+    @JoinColumn(name = "VIDEOENTERTAINMENT_ID", referencedColumnName = "ID")
     private VideoEntertainment videoEntertainment;
 
     @ManyToOne(optional = false)
