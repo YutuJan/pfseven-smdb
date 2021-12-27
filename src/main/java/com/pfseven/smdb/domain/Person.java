@@ -29,43 +29,21 @@ public class Person extends BaseModel {
     @Column(name = "BIRTH_DATE", nullable = false)
     private LocalDate birthDate;
 
+    @NotNull(message = "Person's birth place cannot be null")
     @Column(name = "BIRTH_PLACE", nullable = false)
     private String birthPlace;
 
+    @NotNull
     @Column(name = "BIOGRAPHY", length = 10000)
     private String biography;
+
+    @NotNull
+    @Column(name = "NUM_YEARS", nullable = false)
+    private Integer numYears;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @Column(name = "OCCUPATIONS")
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany
     private Set<Occupation> occupations = new HashSet<>();
-
-    public void addOccupation(Occupation occupation) {
-        boolean occupationAlreadyExists = false;
-        for (Occupation o : occupations) {
-            if (o.equals(occupation)) {
-                occupationAlreadyExists = true;
-                break;
-            }
-        }
-
-        if (!occupationAlreadyExists) {
-            occupations.add(occupation);
-        }
-    }
-
-    public void removeOccupation(Occupation occupation) {
-        for (Occupation o : occupations) {
-            if (o.equals(occupation)) {
-                occupations.remove(occupation);
-                break;
-            }
-        }
-    }
-
-    public void updateOccupation(Occupation occupation) {
-        removeOccupation(occupation);
-        addOccupation(occupation);
-    }
 }
