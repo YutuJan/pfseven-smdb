@@ -47,5 +47,33 @@ public abstract class VideoEntertainment extends BaseModel {
     @EqualsAndHashCode.Exclude
     @OneToMany
     @Column(name = "CAST_N_CREW")
-    private Set<Occupation> castAndCrew = new HashSet<>();
+    private Set<Occupation> occupations = new HashSet<>();
+
+    public void addOccupation(Occupation occupation) {
+        boolean occupationAlreadyExists = false;
+        for (Occupation o : occupations) {
+            if (o.equals(occupation)) {
+                occupationAlreadyExists = true;
+                break;
+            }
+        }
+
+        if (!occupationAlreadyExists) {
+            occupations.add(occupation);
+        }
+    }
+
+    public void removeOccupation(Occupation occupation) {
+        for (Occupation o : occupations) {
+            if (o.equals(occupation)) {
+                occupations.remove(occupation);
+                break;
+            }
+        }
+    }
+
+    public void updateOccupation(Occupation occupation) {
+        removeOccupation(occupation);
+        addOccupation(occupation);
+    }
 }

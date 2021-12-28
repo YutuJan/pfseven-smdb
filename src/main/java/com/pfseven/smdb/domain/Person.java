@@ -29,11 +29,9 @@ public class Person extends BaseModel {
     @Column(name = "BIRTH_DATE", nullable = false)
     private LocalDate birthDate;
 
-    @NotNull
     @Column(name = "BIRTH_PLACE", nullable = false)
     private String birthPlace;
 
-    @NotNull
     @Column(name = "BIOGRAPHY", length = 10000)
     private String biography;
 
@@ -42,4 +40,32 @@ public class Person extends BaseModel {
     @Column(name = "OCCUPATIONS")
     @OneToMany
     private Set<Occupation> occupations = new HashSet<>();
+
+    public void addOccupation(Occupation occupation) {
+        boolean occupationAlreadyExists = false;
+        for (Occupation o : occupations) {
+            if (o.equals(occupation)) {
+                occupationAlreadyExists = true;
+                break;
+            }
+        }
+
+        if (!occupationAlreadyExists) {
+            occupations.add(occupation);
+        }
+    }
+
+    public void removeOccupation(Occupation occupation) {
+        for (Occupation o : occupations) {
+            if (o.equals(occupation)) {
+                occupations.remove(occupation);
+                break;
+            }
+        }
+    }
+
+    public void updateOccupation(Occupation occupation) {
+        removeOccupation(occupation);
+        addOccupation(occupation);
+    }
 }

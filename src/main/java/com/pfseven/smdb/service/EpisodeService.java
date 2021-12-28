@@ -8,9 +8,9 @@ public interface EpisodeService extends BaseService<Episode, Long> {
 
     Episode find(String title);
 
-    void addOccupationToCastAndCrew(Episode episode, Occupation occupation);
+    void addOccupation(Episode episode, Occupation occupation);
 
-    void removeOccupationToCastAndCrew(Episode episode, Occupation occupation);
+    void removeOccupation(Episode episode, Occupation occupation);
 
-    void updateOccupationToCastAndCrew(Episode episode, Occupation occupation);
+    void updateOccupation(Episode episode, Occupation occupation);
 }

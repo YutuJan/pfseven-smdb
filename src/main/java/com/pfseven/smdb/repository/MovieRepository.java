@@ -4,4 +4,7 @@ import com.pfseven.smdb.domain.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MovieRepository extends JpaRepository<Movie, Long> {
+    Movie findMovieByTitle(String title);
+
+    Movie getMovieByTitle(String title);
 }

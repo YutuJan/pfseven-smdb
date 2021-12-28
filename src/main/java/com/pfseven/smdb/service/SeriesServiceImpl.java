@@ -72,9 +72,6 @@ public class SeriesServiceImpl extends BaseServiceImpl<Series> implements Series
     }
 
     private boolean isNull(Object object) {
-        if (object == null) {
-            return true;
-        }
-        return false;
+        return object == null;
     }
 }

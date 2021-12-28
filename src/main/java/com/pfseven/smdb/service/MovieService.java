@@ -8,7 +8,9 @@ public interface MovieService extends BaseService<Movie, Long> {
 
     Movie find(String title);
 
-    void newCastAndCrew(Movie movie, Occupation occupation);
+    void addOccupation(Movie movie, Occupation occupation);
 
-    void removeCastAndCrew(Movie movie, Occupation occupation);
+    void removeOccupation(Movie movie, Occupation occupation);
+
+    void updateOccupation(Movie movie, Occupation occupation);
 }
