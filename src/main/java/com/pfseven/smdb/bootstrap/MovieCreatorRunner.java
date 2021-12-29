@@ -75,10 +75,9 @@ public class MovieCreatorRunner extends AbstractLogComponent implements CommandL
 
     @Override
     public void run(String... args) throws Exception {
-        createBunchOfMovies();
     }
 
-    private void createBunchOfMovies() {
+    public void createBunchOfMovies() {
         List<Movie> movies = List.of(
                 Movie.builder()
                         .title("The Matrix")

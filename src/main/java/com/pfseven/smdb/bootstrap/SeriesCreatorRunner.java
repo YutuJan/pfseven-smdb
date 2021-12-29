@@ -47,6 +47,9 @@ public class SeriesCreatorRunner extends AbstractLogComponent implements Command
 
     @Override
     public void run(String... args) throws Exception {
+    }
+
+    public void createBunchOfSeriesAndEpisodes() {
         Episode episode1 = Episode.builder()
                 .title("eps1.0_hellofriend.mov")
                 .summary(SUMMARY_000)

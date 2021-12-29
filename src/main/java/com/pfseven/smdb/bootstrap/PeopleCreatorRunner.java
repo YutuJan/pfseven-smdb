@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Component
-@Profile("dev")
+@Profile({"dev"})
 @RequiredArgsConstructor
 public class PeopleCreatorRunner extends AbstractLogComponent implements CommandLineRunner {
     private final PersonService personService;
@@ -576,10 +576,9 @@ public class PeopleCreatorRunner extends AbstractLogComponent implements Command
 
     @Override
     public void run(String... args) throws Exception {
-        createBunchOfPeople();
     }
 
-    private void createBunchOfPeople() {
+    public void createBunchOfPeople() {
         List<Person> people = List.of(
                 Person.builder().firstName("Jackie").lastName("Chan")
                         .birthDate(LocalDate.of(1954, 4, 7))
