@@ -38,7 +38,7 @@ public class Person extends BaseModel {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @Column(name = "OCCUPATIONS")
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<Occupation> occupations = new HashSet<>();
 
     public void addOccupation(Occupation occupation) {
