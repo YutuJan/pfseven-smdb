@@ -1,55 +1,37 @@
 package com.pfseven.smdb.controller;
 
+import com.pfseven.smdb.domain.Occupation;
 import com.pfseven.smdb.domain.Person;
+import com.pfseven.smdb.service.BaseService;
 import com.pfseven.smdb.service.PersonService;
+import com.pfseven.smdb.transfer.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/people")
-public class PersonController {
+public class PersonController extends AbstractController<Person> {
     private final PersonService personService;
 
-    @GetMapping
-    public List<Person> findAll() {
-        return personService.findAll();
-    }
-
-    @GetMapping("/{id}")
-    public Person find(@PathVariable Long id) {
-        return personService.find(id);
+    @GetMapping(params = {"fn", "ln"})
+    public ResponseEntity<ApiResponse<Person>> find(@RequestParam("fn") String firstName,
+                                                    @RequestParam("ln") String lastName) {
+        return ResponseEntity.ok(ApiResponse.<Person>builder().data(personService.find(firstName, lastName)).build());
     }
 
     @GetMapping(params = {"fn", "ln"})
-    public Person find(@RequestParam("fn") String firstName, @RequestParam("ln") String lastName) {
-        return personService.find(firstName, lastName);
+    public ResponseEntity<ApiResponse<Person>> get(@RequestParam("fn") String firstName,
+                                                   @RequestParam("ln") String lastName) {
+        return ResponseEntity.ok(ApiResponse.<Person>builder().data(personService.get(firstName, lastName)).build());
     }
 
-    @PostMapping
-    public Person create(@Valid @RequestBody Person person) {
-        return personService.create(person);
-    }
-
-    @PutMapping
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@Valid @RequestBody Person person) {
-        personService.update(person);
-    }
-
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteById(@PathVariable Long id) {
-        personService.deleteById(id);
-    }
-
-    @DeleteMapping
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@Valid @RequestBody Person person) {
-        personService.delete(person);
+    @Override
+    protected BaseService<Person, Long> getService() {
+        return personService;
     }
 }
