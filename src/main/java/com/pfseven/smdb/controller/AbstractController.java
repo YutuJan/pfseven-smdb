@@ -69,10 +69,12 @@ public abstract class AbstractController<T extends BaseModel> extends AbstractLo
         return ResponseEntity.ok(ApiResponse.<T>builder().data(getService().find(id)).build());
     }
 
+    /**
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<T>> get(@PathVariable final Long id) {
         return ResponseEntity.ok(ApiResponse.<T>builder().data(getService().get(id)).build());
     }
+    **/
 
     protected HttpHeaders getNoCacheHeaders() {
         final HttpHeaders headers = new HttpHeaders();

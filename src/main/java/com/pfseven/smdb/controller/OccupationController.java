@@ -17,7 +17,7 @@ public class OccupationController extends AbstractController<Occupation> {
     private final MovieService movieService;
     private final EpisodeService episodeService;
 
-    @PostMapping
+    @PostMapping("/movie")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void addOccupation(@Valid @RequestBody final Person person,
                               @Valid @RequestBody final Movie movie,
@@ -27,7 +27,7 @@ public class OccupationController extends AbstractController<Occupation> {
         }
     }
 
-    @DeleteMapping
+    @DeleteMapping("movie")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeOccupation(@Valid @RequestBody final Person person,
                                  @Valid @RequestBody final Movie movie,
@@ -37,7 +37,7 @@ public class OccupationController extends AbstractController<Occupation> {
         }
     }
 
-    @PutMapping
+    @PutMapping("movie")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateOccupation(@Valid @RequestBody final Person person,
                                  @Valid @RequestBody final Movie movie,
@@ -47,7 +47,7 @@ public class OccupationController extends AbstractController<Occupation> {
         }
     }
 
-    @PostMapping
+    @PostMapping("/episode")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void addOccupation(@Valid @RequestBody final Person person,
                               @Valid @RequestBody final Episode episode,
@@ -57,7 +57,7 @@ public class OccupationController extends AbstractController<Occupation> {
         }
     }
 
-    @DeleteMapping
+    @DeleteMapping("/episode")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeOccupation(@Valid @RequestBody final Person person,
                                  @Valid @RequestBody final Episode episode,
@@ -67,7 +67,7 @@ public class OccupationController extends AbstractController<Occupation> {
         }
     }
 
-    @PutMapping
+    @PutMapping("/episode")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateOccupation(@Valid @RequestBody final Person person,
                                  @Valid @RequestBody final Episode episode,

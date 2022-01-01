@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class EpisodeController extends AbstractController<Episode> {
     private final EpisodeService episodeService;
 
-    @GetMapping("/{title}")
+    @GetMapping("/get/{title}")
     public ResponseEntity<ApiResponse<Episode>> get(@PathVariable final String title) {
         return ResponseEntity.ok(ApiResponse.<Episode>builder().data(episodeService.get(title)).build());
     }
 
-    @GetMapping("/{title}")
+    @GetMapping("/find/{title}")
     public ResponseEntity<ApiResponse<Episode>> find(@PathVariable final String title) {
         return ResponseEntity.ok(ApiResponse.<Episode>builder().data(episodeService.find(title)).build());
     }

@@ -27,7 +27,7 @@ public class Series extends BaseModel {
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "series", targetEntity = Episode.class)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "series", targetEntity = Episode.class)
     private Set<Episode> episodes;
 
 

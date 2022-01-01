@@ -19,17 +19,17 @@ import javax.validation.Valid;
 public class SeriesController extends AbstractController<Series> {
     private final SeriesService seriesService;
 
-    @GetMapping("/{title}")
+    @GetMapping("/get/{title}")
     public ResponseEntity<ApiResponse<Series>> get(@PathVariable final String title) {
         return ResponseEntity.ok(ApiResponse.<Series>builder().data(seriesService.get(title)).build());
     }
 
-    @GetMapping("/{title}")
+    @GetMapping("/find/{title}")
     public ResponseEntity<ApiResponse<Series>> find(@PathVariable final String title) {
         return ResponseEntity.ok(ApiResponse.<Series>builder().data(seriesService.find(title)).build());
     }
 
-    @PostMapping
+    @PostMapping("/add")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void addEpisode(@Valid @RequestBody final Series series,
                            @Valid @RequestBody final Episode episode) {
@@ -38,7 +38,7 @@ public class SeriesController extends AbstractController<Series> {
         }
     }
 
-    @DeleteMapping
+    @DeleteMapping("/remove")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeEpisode(@Valid @RequestBody final Series series,
                               @Valid @RequestBody final Episode episode) {
@@ -47,7 +47,7 @@ public class SeriesController extends AbstractController<Series> {
         }
     }
 
-    @PutMapping
+    @PutMapping("/update")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateEpisode(@Valid @RequestBody final Series series,
                               @Valid @RequestBody final Episode episode) {

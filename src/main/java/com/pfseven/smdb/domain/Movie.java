@@ -2,6 +2,8 @@ package com.pfseven.smdb.domain;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -22,5 +24,6 @@ public class Movie extends VideoEntertainment {
     @ElementCollection
     @Enumerated(EnumType.STRING)
     @Column(name = "GENRES", nullable = false)
+    @Fetch(FetchMode.JOIN)
     private Set<Genre> genres = new HashSet<>();
 }

@@ -18,13 +18,13 @@ import javax.validation.Valid;
 public class PersonController extends AbstractController<Person> {
     private final PersonService personService;
 
-    @GetMapping(params = {"fn", "ln"})
+    @GetMapping(value = "/find", params = {"fn", "ln"})
     public ResponseEntity<ApiResponse<Person>> find(@RequestParam("fn") String firstName,
                                                     @RequestParam("ln") String lastName) {
         return ResponseEntity.ok(ApiResponse.<Person>builder().data(personService.find(firstName, lastName)).build());
     }
 
-    @GetMapping(params = {"fn", "ln"})
+    @GetMapping(value = "/get", params = {"fn", "ln"})
     public ResponseEntity<ApiResponse<Person>> get(@RequestParam("fn") String firstName,
                                                    @RequestParam("ln") String lastName) {
         return ResponseEntity.ok(ApiResponse.<Person>builder().data(personService.get(firstName, lastName)).build());

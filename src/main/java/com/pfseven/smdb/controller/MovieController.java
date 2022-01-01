@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class MovieController extends AbstractController<Movie> {
     private final MovieService movieService;
 
-    @GetMapping("/{title}")
+    @GetMapping("/find/{title}")
     public ResponseEntity<ApiResponse<Movie>> find(@PathVariable final String title) {
         return ResponseEntity.ok(ApiResponse.<Movie>builder().data(movieService.find(title)).build());
     }
 
-    @GetMapping("/{title}")
+    @GetMapping("/get/{title}")
     public ResponseEntity<ApiResponse<Movie>> get(@PathVariable final String title) {
         return ResponseEntity.ok(ApiResponse.<Movie>builder().data(movieService.get(title)).build());
     }

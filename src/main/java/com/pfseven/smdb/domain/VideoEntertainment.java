@@ -45,7 +45,7 @@ public abstract class VideoEntertainment extends BaseModel {
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @Column(name = "CAST_N_CREW")
     private Set<Occupation> occupations = new HashSet<>();
 
