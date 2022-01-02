@@ -15,17 +15,7 @@ public class OccupationServiceImpl extends BaseServiceImpl<Occupation> implement
     private final OccupationRepository occupationRepository;
 
     @Override
-    public void newOccupation(Occupation occupation) {
-
-    }
-
-    @Override
-    public void removeOccupation(Occupation occupation) {
-
-    }
-
-    @Override
-    JpaRepository<Occupation, Long> getRepository() {
+    public JpaRepository<Occupation, Long> getRepository() {
         return occupationRepository;
     }
 
@@ -34,8 +24,4 @@ public class OccupationServiceImpl extends BaseServiceImpl<Occupation> implement
         return null;
     }
 
-    @Override
-    public List<Occupation> getAll(RoleType role) {
-        return null;
-    }
 }

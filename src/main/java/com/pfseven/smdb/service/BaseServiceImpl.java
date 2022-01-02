@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
 public abstract class BaseServiceImpl<T extends BaseModel> extends AbstractLogComponent
         implements BaseService<T, Long> {
 
-    abstract JpaRepository<T, Long> getRepository();
+    public abstract JpaRepository<T, Long> getRepository();
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED,
@@ -70,11 +70,8 @@ public abstract class BaseServiceImpl<T extends BaseModel> extends AbstractLogCo
 
     @Override
     public T find(Long id) {
+        logger.debug("Find object with id {}.", id);
         return getRepository().findById(id).orElseThrow(NoSuchElementException::new);
     }
 
-    @Override
-    public T get(Long id) {
-        return getRepository().getById(id);
-    }
 }

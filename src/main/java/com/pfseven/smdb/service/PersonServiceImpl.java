@@ -13,27 +13,13 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
     private final PersonRepository personRepository;
 
     @Override
-    public Person get(String firstName, String lastName) {
-        return null;
-    }
-
-    @Override
-    public Person find(String firstName, String lastName) {
-        return null;
-    }
-
-    @Override
-    public void newOccupation(Person person, Occupation occupation) {
-
-    }
-
-    @Override
-    public void removeOccupation(Person person, Occupation occupation) {
-
-    }
-
-    @Override
-    JpaRepository<Person, Long> getRepository() {
+    public JpaRepository<Person, Long> getRepository() {
         return personRepository;
     }
+
+    @Override
+    public Person findByName(String firstName, String lastName) {
+        return null;
+    }
+
 }
