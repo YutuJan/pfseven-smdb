@@ -1,16 +1,25 @@
 package com.pfseven.smdb.service;
 
-import com.pfseven.smdb.domain.Episode;
-import com.pfseven.smdb.domain.Occupation;
+import com.pfseven.smdb.domain.*;
+
+import java.util.Date;
+import java.util.List;
 
 public interface EpisodeService extends BaseService<Episode, Long> {
-    Episode get(String title);
 
-    Episode find(String title);
+    Episode findByTitle(String title);
 
-    void addOccupation(Episode episode, Occupation occupation);
+    Episode findByDistributor(String distributor);
 
-    void removeOccupation(Episode episode, Occupation occupation);
+    void addPerson(Episode movie, Occupation occupation);
 
-    void updateOccupation(Episode episode, Occupation occupation);
+    void updatePerson(Episode movie, Occupation occupation);
+
+    void removePerson(Episode movie, Occupation occupation);
+
+    Episode findByDuration(Long duration);
+
+    Episode findByYear(Date date);
+
+    List<Episode> findBySeries(Series series);
 }

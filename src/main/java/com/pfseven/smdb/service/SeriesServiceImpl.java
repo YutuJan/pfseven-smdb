@@ -2,6 +2,7 @@ package com.pfseven.smdb.service;
 
 import com.pfseven.smdb.domain.Episode;
 import com.pfseven.smdb.domain.Series;
+import com.pfseven.smdb.domain.SeriesCategory;
 import com.pfseven.smdb.repository.SeriesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,17 +13,11 @@ import org.springframework.stereotype.Service;
 public class SeriesServiceImpl extends BaseServiceImpl<Series> implements SeriesService {
     private final SeriesRepository seriesRepository;
 
-    JpaRepository<Series, Long> getRepository() {
+    public JpaRepository<Series, Long> getRepository() {
         return seriesRepository;
     }
-
     @Override
-    public Series get(String title) {
-        return seriesRepository.getByTitle(title);
-    }
-
-    @Override
-    public Series find(String title) {
+    public Series findByTitle(String title) {
         return seriesRepository.findByTitle(title);
     }
 
@@ -61,6 +56,11 @@ public class SeriesServiceImpl extends BaseServiceImpl<Series> implements Series
         }
 
         logger.debug("Episode[{}] removed to Series[{}]", episode, series);
+    }
+
+    @Override
+    public Series findByCategory(SeriesCategory category) {
+        return null;
     }
 
     @Override

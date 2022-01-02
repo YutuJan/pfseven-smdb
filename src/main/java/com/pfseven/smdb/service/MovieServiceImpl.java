@@ -1,67 +1,62 @@
 package com.pfseven.smdb.service;
 
+import com.pfseven.smdb.domain.Genre;
 import com.pfseven.smdb.domain.Movie;
 import com.pfseven.smdb.domain.Occupation;
-import com.pfseven.smdb.domain.VideoEntertainment;
 import com.pfseven.smdb.repository.MovieRepository;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
 public class MovieServiceImpl extends BaseServiceImpl<Movie> implements MovieService {
     private final MovieRepository movieRepository;
 
-    JpaRepository<Movie, Long> getRepository() {
+    public JpaRepository<Movie, Long> getRepository() {
         return movieRepository;
     }
 
     @Override
-    public Movie get(String title) {
-        return movieRepository.getMovieByTitle(title);
+    public Movie findByTitle(String title) {
+        return null;
     }
 
     @Override
-    public Movie find(String title) {
-        return movieRepository.findMovieByTitle(title);
+    public Movie findByDistributor(String distributor){
+        return null;
     }
 
     @Override
-    public void addOccupation(Movie movie, Occupation occupation) {
-        if (isNull(occupation) || isNull(movie)) {
-            return;
-        }
+    public void addPerson(Movie movie, Occupation occupation) {
 
-        movie.addOccupation(occupation);
-
-        logger.debug("Occupation[{}] added to Movie[{}]", occupation, movie);
     }
 
     @Override
-    public void removeOccupation(Movie movie, Occupation occupation) {
-        if (isNull(occupation) || isNull(movie)) {
-            return;
-        }
+    public void updatePerson(Movie movie, Occupation occupation) {
 
-        movie.removeOccupation(occupation);
-
-        logger.debug("Occupation[{}] removed to Movie[{}]", occupation, movie);
     }
 
     @Override
-    public void updateOccupation(Movie movie, Occupation occupation) {
-        if (isNull(occupation) || isNull(movie)) {
-            return;
-        }
+    public void removePerson(Movie movie, Occupation occupation) {
 
-        movie.updateOccupation(occupation);
-
-        logger.debug("Occupation[{}] updated to Movie[{}]", occupation, movie);
     }
 
-    private boolean isNull(Object object) {
-        return object == null;
+    @Override
+    public Movie findByDuration(Long duration) {
+        return null;
+    }
+
+    @Override
+    public Movie findByYear(LocalDate date) {
+        return null;
+    }
+
+    @Override
+    public Movie findByGenre(Genre genre) {
+        return null;
     }
 }

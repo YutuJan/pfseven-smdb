@@ -20,6 +20,4 @@ public interface BaseService<T, ID> {
     List<T> findAll();
 
     T find(ID id);
-
-    T get(ID id);
 }

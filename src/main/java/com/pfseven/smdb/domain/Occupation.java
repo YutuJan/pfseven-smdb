@@ -22,8 +22,8 @@ public class Occupation extends BaseModel {
     @Column(name = "OCCUPATION", nullable = false)
     private RoleType occupation;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "VIDEO_ENTERTAINMENT_ID", referencedColumnName = "ID")
+    @ManyToOne
+    @JoinColumn(name = "VID_ENTERTAINMENT_ID", referencedColumnName = "ID")
     private VideoEntertainment videoEntertainment;
 
     @ManyToOne(optional = false)

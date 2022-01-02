@@ -38,8 +38,8 @@ public class Person extends BaseModel {
     private String biography;
 
     @NotNull
-    @Column(name = "NUM_YEARS", nullable = false)
-    private Integer numYears;
+    @Column(name = "DEBUT", nullable = false)
+    private Integer debutYear;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
