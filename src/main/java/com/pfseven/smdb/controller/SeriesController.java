@@ -1,11 +1,11 @@
 package com.pfseven.smdb.controller;
 
 import com.pfseven.smdb.domain.Episode;
-import com.pfseven.smdb.domain.Person;
 import com.pfseven.smdb.domain.Series;
 import com.pfseven.smdb.service.BaseService;
 import com.pfseven.smdb.service.SeriesService;
 import com.pfseven.smdb.transfer.ApiResponse;
+import com.pfseven.smdb.transfer.SeriesAndEpisodeDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,8 +31,10 @@ public class SeriesController extends AbstractController<Series> {
 
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void addEpisode(@Valid @RequestBody final Series series,
-                           @Valid @RequestBody final Episode episode) {
+    public void addEpisode(@Valid @RequestBody final SeriesAndEpisodeDto seriesAndEpisodeDto) {
+        Series series = seriesAndEpisodeDto.getSeries();
+        Episode episode = seriesAndEpisodeDto.getEpisode();
+
         if (seriesService.exists(series)) {
             seriesService.addEpisode(series, episode);
         }
@@ -40,8 +42,10 @@ public class SeriesController extends AbstractController<Series> {
 
     @DeleteMapping("/remove")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void removeEpisode(@Valid @RequestBody final Series series,
-                              @Valid @RequestBody final Episode episode) {
+    public void removeEpisode(@Valid @RequestBody final SeriesAndEpisodeDto seriesAndEpisodeDto) {
+        Series series = seriesAndEpisodeDto.getSeries();
+        Episode episode = seriesAndEpisodeDto.getEpisode();
+
         if (seriesService.exists(series)) {
             seriesService.removeEpisode(series, episode);
         }
@@ -49,8 +53,10 @@ public class SeriesController extends AbstractController<Series> {
 
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateEpisode(@Valid @RequestBody final Series series,
-                              @Valid @RequestBody final Episode episode) {
+    public void updateEpisode(@Valid @RequestBody final SeriesAndEpisodeDto seriesAndEpisodeDto) {
+        Series series = seriesAndEpisodeDto.getSeries();
+        Episode episode = seriesAndEpisodeDto.getEpisode();
+
         if (seriesService.exists(series)) {
             seriesService.updateEpisode(series, episode);
         }

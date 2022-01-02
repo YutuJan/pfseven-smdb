@@ -31,9 +31,8 @@ public class Series extends BaseModel {
     @JsonManagedReference("episodes")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "series", targetEntity = Episode.class)
-    private Set<Episode> episodes;
-
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER, mappedBy = "series", targetEntity = Episode.class)
+    private Set<Episode> episodes = new HashSet<>();
 
     @Enumerated(EnumType.STRING)
     @Column(name = "CATEGORY", nullable = false)
@@ -46,4 +45,38 @@ public class Series extends BaseModel {
     @Fetch(value = FetchMode.JOIN)
     @Column(name = "GENRES", nullable = false)
     private Set<Genre> genres = new HashSet<>();
+
+    public void addEpisode(Episode episode) {
+        boolean episodeAlreadyExists = false;
+
+        if (episodes == null) {
+            episodes = new HashSet<>();
+            episodes.add(episode);
+        } else {
+            for (Episode e : episodes) {
+                if (e.equals(episode)) {
+                    episodeAlreadyExists = true;
+                    break;
+                }
+            }
+
+            if (!episodeAlreadyExists) {
+                episodes.add(episode);
+            }
+        }
+    }
+
+    public void removeEpisode(Episode episode) {
+        for (Episode e : episodes) {
+            if (e.equals(episode)) {
+                episodes.remove(episode);
+                break;
+            }
+        }
+    }
+
+    public void updateEpisode(Episode episode) {
+        removeEpisode(episode);
+        addEpisode(episode);
+    }
 }

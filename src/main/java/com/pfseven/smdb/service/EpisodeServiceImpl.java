@@ -2,7 +2,6 @@ package com.pfseven.smdb.service;
 
 import com.pfseven.smdb.domain.Episode;
 import com.pfseven.smdb.domain.Occupation;
-import com.pfseven.smdb.domain.VideoEntertainment;
 import com.pfseven.smdb.repository.EpisodeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;

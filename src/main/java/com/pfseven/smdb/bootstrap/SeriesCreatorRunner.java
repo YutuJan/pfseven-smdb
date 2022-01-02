@@ -2,7 +2,6 @@ package com.pfseven.smdb.bootstrap;
 
 import com.pfseven.smdb.base.AbstractLogComponent;
 import com.pfseven.smdb.domain.*;
-import com.pfseven.smdb.service.EpisodeService;
 import com.pfseven.smdb.service.SeriesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -18,7 +17,6 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class SeriesCreatorRunner extends AbstractLogComponent implements CommandLineRunner {
     private final SeriesService seriesService;
-    private final EpisodeService episodeService;
 
     private final String SUMMARY_000 = "A notorious hacker takes an interest in cyber security engineer and vigilante" +
             " styled computer hacker Elliot, while an evil corporation is hacked.";
@@ -101,18 +99,13 @@ public class SeriesCreatorRunner extends AbstractLogComponent implements Command
                 .genres(Set.of(Genre.COMEDY))
                 .build();
 
-        episode1.setSeries(series1);
-        episode2.setSeries(series1);
-        episode3.setSeries(series2);
-        episode4.setSeries(series2);
-
-        series1.setEpisodes(Set.of(episode1, episode2));
-        series2.setEpisodes(Set.of(episode3, episode4));
-
         List<Series> series = List.of(series1, series2);
-        List<Episode> episodes = List.of(episode1, episode2, episode3, episode4);
 
         logger.info("Created {} series.", seriesService.createAll(series).size());
-        logger.info("Created {} episodes.", episodeService.createAll(episodes).size());
+
+        seriesService.addEpisode(series1, episode1);
+        seriesService.addEpisode(series1, episode2);
+        seriesService.addEpisode(series2, episode3);
+        seriesService.addEpisode(series2, episode4);
     }
 }

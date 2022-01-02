@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SeriesServiceImpl extends BaseServiceImpl<Series> implements SeriesService {
     private final SeriesRepository seriesRepository;
+    private final EpisodeService episodeService;
 
     JpaRepository<Series, Long> getRepository() {
         return seriesRepository;
@@ -32,17 +33,9 @@ public class SeriesServiceImpl extends BaseServiceImpl<Series> implements Series
             return;
         }
 
-        boolean episodeAlreadyExists = false;
-        for (Episode e : series.getEpisodes()) {
-            if (series.getTitle().equals(e.getTitle())) {
-                episodeAlreadyExists = true;
-                break;
-            }
-        }
-
-        if (!episodeAlreadyExists) {
-            series.getEpisodes().add(episode);
-        }
+        episode.setSeries(series);
+        series.addEpisode(episode);
+        episodeService.create(episode);
 
         logger.debug("Episode[{}] added to Series[{}]", episode, series);
     }
@@ -53,22 +46,18 @@ public class SeriesServiceImpl extends BaseServiceImpl<Series> implements Series
             return;
         }
 
-        for (Episode e : series.getEpisodes()) {
-            if (e.getTitle().equals(episode.getTitle())) {
-                series.getEpisodes().remove(e);
-                break;
-            }
-        }
+        series.removeEpisode(episode);
+        //episodeService.delete(episode);
 
-        logger.debug("Episode[{}] removed to Series[{}]", episode, series);
+        logger.debug("Episode[{}] removed from Series[{}]", episode, series);
     }
 
     @Override
     public void updateEpisode(Series series, Episode episode) {
-        removeEpisode(series, episode);
-        addEpisode(series, episode);
+        series.updateEpisode(episode);
+        episodeService.update(episode);
 
-        logger.debug("Episode[{}] updated to Series[{}]", episode, series);
+        logger.debug("Episode[{}] updated in Series[{}]", episode, series);
     }
 
     private boolean isNull(Object object) {

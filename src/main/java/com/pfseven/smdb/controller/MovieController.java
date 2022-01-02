@@ -1,7 +1,6 @@
 package com.pfseven.smdb.controller;
 
 import com.pfseven.smdb.domain.Movie;
-import com.pfseven.smdb.domain.Person;
 import com.pfseven.smdb.service.BaseService;
 import com.pfseven.smdb.service.MovieService;
 import com.pfseven.smdb.transfer.ApiResponse;
