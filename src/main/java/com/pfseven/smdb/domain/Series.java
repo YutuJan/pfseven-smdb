@@ -1,7 +1,10 @@
 package com.pfseven.smdb.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -25,6 +28,7 @@ public class Series extends BaseModel {
     @Column(name = "INFO", length = 1000, nullable = false)
     private String info;
 
+    @JsonManagedReference("episodes")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "series", targetEntity = Episode.class)
@@ -39,6 +43,7 @@ public class Series extends BaseModel {
     @EqualsAndHashCode.Exclude
     @ElementCollection
     @Enumerated(EnumType.STRING)
+    @Fetch(value = FetchMode.JOIN)
     @Column(name = "GENRES", nullable = false)
     private Set<Genre> genres = new HashSet<>();
 }

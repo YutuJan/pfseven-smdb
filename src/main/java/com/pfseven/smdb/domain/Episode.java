@@ -1,5 +1,6 @@
 package com.pfseven.smdb.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -19,6 +20,7 @@ public class Episode extends VideoEntertainment {
     @Column(name = "SEASON", nullable = false)
     private Integer season;
 
+    @JsonBackReference("episodes")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "SERIES_ID", referencedColumnName = "ID")
     private Series series;
