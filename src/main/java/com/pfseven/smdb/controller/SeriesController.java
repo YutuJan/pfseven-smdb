@@ -3,6 +3,7 @@ package com.pfseven.smdb.controller;
 import com.pfseven.smdb.domain.Episode;
 import com.pfseven.smdb.domain.Series;
 import com.pfseven.smdb.service.BaseService;
+import com.pfseven.smdb.service.EpisodeService;
 import com.pfseven.smdb.service.SeriesService;
 import com.pfseven.smdb.transfer.ApiResponse;
 import com.pfseven.smdb.transfer.SeriesAndEpisodeDto;
@@ -18,6 +19,7 @@ import javax.validation.Valid;
 @RequestMapping("/series")
 public class SeriesController extends AbstractController<Series> {
     private final SeriesService seriesService;
+    private final EpisodeService episodeService;
 
     @GetMapping("/get/{title}")
     public ResponseEntity<ApiResponse<Series>> get(@PathVariable final String title) {
@@ -40,11 +42,35 @@ public class SeriesController extends AbstractController<Series> {
         }
     }
 
-    @DeleteMapping("/remove")
+    @DeleteMapping("/remove/")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeEpisode(@Valid @RequestBody final SeriesAndEpisodeDto seriesAndEpisodeDto) {
         Series series = seriesAndEpisodeDto.getSeries();
         Episode episode = seriesAndEpisodeDto.getEpisode();
+
+        if (seriesService.exists(series)) {
+            seriesService.removeEpisode(series, episode);
+        }
+    }
+
+    @DeleteMapping("/remove/series_id/{series_id}/episode_id/{episode_id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void removeEpisode(@PathVariable("series_id") final Long series_id,
+                              @PathVariable("episode_id") final Long episode_id) {
+        Series series = seriesService.find(series_id);
+        Episode episode = episodeService.find(episode_id);
+
+        if (seriesService.exists(series)) {
+            seriesService.removeEpisode(series, episode);
+        }
+    }
+
+    @DeleteMapping("/remove/series_title/{series_title}/episode_title/{episode_title}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void removeEpisode(@PathVariable("series_title") final String series_title,
+                              @PathVariable("episode_title") final String episode_title) {
+        Series series = seriesService.find(series_title);
+        Episode episode = episodeService.find(episode_title);
 
         if (seriesService.exists(series)) {
             seriesService.removeEpisode(series, episode);
