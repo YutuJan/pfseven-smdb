@@ -8,211 +8,134 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
 @Profile("dev")
 @RequiredArgsConstructor
 public class OccupationCreatorRunner extends AbstractLogComponent implements CommandLineRunner {
     private final OccupationService occupationService;
-    private final PersonService personService;
-    private final MovieService movieService;
-    private final EpisodeService episodeService;
+
+    private final String PERSON1_FIRST_NAME = "Jackie";
+    private final String PERSON2_FIRST_NAME = "Chris";
+    private final String PERSON3_FIRST_NAME = "Anthony";
+    private final String PERSON4_FIRST_NAME = "Keanu";
+    private final String PERSON5_FIRST_NAME = "Carrie-Anne";
+    private final String PERSON6_FIRST_NAME = "Laurence";
+    private final String PERSON7_FIRST_NAME = "Arnold";
+    private final String PERSON8_FIRST_NAME = "Linda";
+    private final String PERSON9_FIRST_NAME = "Milla";
+    private final String PERSON10_FIRST_NAME = "Bruce";
+    private final String PERSON11_FIRST_NAME = "Sylvester";
+    private final String PERSON12_FIRST_NAME = "Dolph";
+    private final String PERSON13_FIRST_NAME = "Jeff";
+    private final String PERSON14_FIRST_NAME = "Julianne";
+    private final String PERSON15_FIRST_NAME = "Rami";
+    private final String PERSON16_FIRST_NAME = "Jennifer";
+    private final String PERSON17_FIRST_NAME = "Courteney";
+    private final String PERSON18_FIRST_NAME = "Jim";
+    private final String PERSON19_FIRST_NAME = "Jeff";
+    private final String PERSON20_FIRST_NAME = "Lucy";
+
+    private final String PERSON1_LAST_NAME = "Chan";
+    private final String PERSON2_LAST_NAME = "Tucker";
+    private final String PERSON3_LAST_NAME = "Quinn";
+    private final String PERSON4_LAST_NAME = "Reeves";
+    private final String PERSON5_LAST_NAME = "Moss";
+    private final String PERSON6_LAST_NAME = "Fishburne";
+    private final String PERSON7_LAST_NAME = "Schwarzenegger";
+    private final String PERSON8_LAST_NAME = "Hamilton";
+    private final String PERSON9_LAST_NAME = "Jovovich";
+    private final String PERSON10_LAST_NAME = "Willis";
+    private final String PERSON11_LAST_NAME = "Stallone";
+    private final String PERSON12_LAST_NAME = "Lundgren";
+    private final String PERSON13_LAST_NAME = "Bridges";
+    private final String PERSON14_LAST_NAME = "Moore";
+    private final String PERSON15_LAST_NAME = "Malek";
+    private final String PERSON16_LAST_NAME = "Aniston";
+    private final String PERSON17_LAST_NAME = "Cox";
+    private final String PERSON18_LAST_NAME = "Carrey";
+    private final String PERSON19_LAST_NAME = "Daniels";
+    private final String PERSON20_LAST_NAME = "Boynton";
+
+    private final String MOVIE1_TITLE = "The Matrix";
+    private final String MOVIE2_TITLE = "Zorba the Greek";
+    private final String MOVIE3_TITLE = "Rush Hour";
+    private final String MOVIE4_TITLE = "The Terminator";
+    private final String MOVIE5_TITLE = "The Expendables";
+    private final String MOVIE6_TITLE = "Rocky";
+    private final String MOVIE7_TITLE = "The Big Lebowski";
+    private final String MOVIE8_TITLE = "Ace Ventura: Pet Detective";
+    private final String MOVIE9_TITLE = "Dumb & Dumber";
+    private final String MOVIE10_TITLE = "Bohemian Rhapsody";
+
+    private final String EPISODE1_TITLE = "eps1.0_hellofriend.mov";
+    private final String EPISODE2_TITLE = "eps1.1_ones-and-zer0es.mpeg";
+    private final String EPISODE3_TITLE = "The One Where Monica Gets a Roommate";
+    private final String EPISODE4_TITLE = "The One with the Sonogram at the End";
 
     @Override
     public void run(String... args) throws Exception {
     }
 
     public void createBunchOfOccupations() {
-        Person person1 = personService.get("Jackie", "Chan");
-        Person person2 = personService.get("Chris", "Tucker");
-        Person person3 = personService.get("Anthony", "Quinn");
-        Person person4 = personService.get("Keanu", "Reeves");
-        Person person5 = personService.get("Carrie-Anne", "Moss");
-        Person person6 = personService.get("Laurence", "Fishburne");
-        Person person7 = personService.get("Arnold", "Schwarzenegger");
-        Person person8 = personService.get("Linda", "Hamilton");
-        Person person9 = personService.get("Milla", "Jovovich");
-        Person person10 = personService.get("Bruce", "Willis");
-        Person person11 = personService.get("Sylvester", "Stallone");
-        Person person12 = personService.get("Dolph", "Lundgren");
-        Person person13 = personService.get("Jeff", "Bridges");
-        Person person14 = personService.get("Julianne", "Moore");
-        Person person15 = personService.get("Rami", "Malek");
-        Person person16 = personService.get("Jennifer", "Aniston");
-        Person person17 = personService.get("Courteney", "Cox");
-        Person person18 = personService.get("Jim", "Carrey");
-        Person person19 = personService.get("Jeff", "Daniels");
-        Person person20 = personService.get("Lucy", "Boynton");
+        occupationService.addPersonToMovieOccupation(
+                PERSON1_FIRST_NAME, PERSON1_LAST_NAME, MOVIE3_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToMovieOccupation(
+                PERSON2_FIRST_NAME, PERSON2_LAST_NAME, MOVIE3_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToMovieOccupation(
+                PERSON3_FIRST_NAME, PERSON3_LAST_NAME, MOVIE2_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToMovieOccupation(
+                PERSON4_FIRST_NAME, PERSON4_LAST_NAME, MOVIE1_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToMovieOccupation(
+                PERSON5_FIRST_NAME, PERSON5_LAST_NAME, MOVIE1_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToMovieOccupation(
+                PERSON6_FIRST_NAME, PERSON6_LAST_NAME, MOVIE1_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToMovieOccupation(
+                PERSON7_FIRST_NAME, PERSON7_LAST_NAME, MOVIE4_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToMovieOccupation(
+                PERSON8_FIRST_NAME, PERSON8_LAST_NAME, MOVIE4_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToMovieOccupation(
+                PERSON1_FIRST_NAME, PERSON1_LAST_NAME, MOVIE5_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToMovieOccupation(
+                PERSON7_FIRST_NAME, PERSON7_LAST_NAME, MOVIE5_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToMovieOccupation(
+                PERSON9_FIRST_NAME, PERSON9_LAST_NAME, MOVIE5_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToMovieOccupation(
+                PERSON10_FIRST_NAME, PERSON10_LAST_NAME, MOVIE5_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToMovieOccupation(
+                PERSON11_FIRST_NAME, PERSON11_LAST_NAME, MOVIE5_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToMovieOccupation(
+                PERSON12_FIRST_NAME, PERSON12_LAST_NAME, MOVIE5_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToMovieOccupation(
+                PERSON13_FIRST_NAME, PERSON13_LAST_NAME, MOVIE7_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToMovieOccupation(
+                PERSON14_FIRST_NAME, PERSON14_LAST_NAME, MOVIE7_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToMovieOccupation(
+                PERSON15_FIRST_NAME, PERSON15_LAST_NAME, MOVIE10_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToMovieOccupation(
+                PERSON20_FIRST_NAME, PERSON20_LAST_NAME, MOVIE10_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToMovieOccupation(
+                PERSON18_FIRST_NAME, PERSON18_LAST_NAME, MOVIE9_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToMovieOccupation(
+                PERSON19_FIRST_NAME, PERSON19_LAST_NAME, MOVIE9_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToMovieOccupation(
+                PERSON11_FIRST_NAME, PERSON11_LAST_NAME, MOVIE6_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToMovieOccupation(
+                PERSON12_FIRST_NAME, PERSON12_LAST_NAME, MOVIE6_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToMovieOccupation(
+                PERSON18_FIRST_NAME, PERSON18_LAST_NAME, MOVIE8_TITLE, String.valueOf(RoleType.ACTOR));
 
-        Movie movie1 = movieService.get("The Matrix");
-        Movie movie2 = movieService.get("Zorba the Greek");
-        Movie movie3 = movieService.get("Rush Hour");
-        Movie movie4 = movieService.get("The Terminator");
-        Movie movie5 = movieService.get("The Expendables");
-        Movie movie6 = movieService.get("Rocky");
-        Movie movie7 = movieService.get("The Big Lebowski");
-        Movie movie8 = movieService.get("Ace Ventura: Pet Detective");
-        Movie movie9 = movieService.get("Dumb & Dumber");
-        Movie movie10 = movieService.get("Bohemian Rhapsody");
 
-        Episode episode1 = episodeService.get("eps1.0_hellofriend.mov");
-        Episode episode2 = episodeService.get("eps1.1_ones-and-zer0es.mpeg");
-        Episode episode3 = episodeService.get("The One Where Monica Gets a Roommate");
-        Episode episode4 = episodeService.get("The One with the Sonogram at the End");
-
-        List<Occupation> occupationsInMovies = List.of(
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person1)
-                        .videoEntertainment(movie3)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person2)
-                        .videoEntertainment(movie3)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person3)
-                        .videoEntertainment(movie2)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person4)
-                        .videoEntertainment(movie1)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person5)
-                        .videoEntertainment(movie1)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person6)
-                        .videoEntertainment(movie1)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person7)
-                        .videoEntertainment(movie4)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person8)
-                        .videoEntertainment(movie4)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person1)
-                        .videoEntertainment(movie5)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person7)
-                        .videoEntertainment(movie5)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person9)
-                        .videoEntertainment(movie5)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person10)
-                        .videoEntertainment(movie5)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person11)
-                        .videoEntertainment(movie5)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person12)
-                        .videoEntertainment(movie5)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person13)
-                        .videoEntertainment(movie7)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person14)
-                        .videoEntertainment(movie7)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person15)
-                        .videoEntertainment(movie10)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person20)
-                        .videoEntertainment(movie10)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person18)
-                        .videoEntertainment(movie9)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person19)
-                        .videoEntertainment(movie9)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person11)
-                        .videoEntertainment(movie6)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person12)
-                        .videoEntertainment(movie6)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person18)
-                        .videoEntertainment(movie8)
-                        .build()
-        );
-
-        List<Occupation> occupationsInEpisodes = List.of(
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person15)
-                        .videoEntertainment(episode1)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person15)
-                        .videoEntertainment(episode2)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person16)
-                        .videoEntertainment(episode3)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person17)
-                        .videoEntertainment(episode3)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person16)
-                        .videoEntertainment(episode4)
-                        .build(),
-                Occupation.builder()
-                        .occupation(RoleType.ACTOR)
-                        .person(person17)
-                        .videoEntertainment(episode4)
-                        .build()
-        );
-
-        logger.info("Created {} occupations in movies.", occupationService.createAll(occupationsInMovies).size());
-        logger.info("Created {} occupations in episodes.", occupationService.createAll(occupationsInEpisodes).size());
+        occupationService.addPersonToEpisodeOccupation(
+                PERSON15_FIRST_NAME, PERSON15_LAST_NAME, EPISODE1_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToEpisodeOccupation(
+                PERSON15_FIRST_NAME, PERSON15_LAST_NAME, EPISODE2_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToEpisodeOccupation(
+                PERSON16_FIRST_NAME, PERSON16_LAST_NAME, EPISODE3_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToEpisodeOccupation(
+                PERSON17_FIRST_NAME, PERSON17_LAST_NAME, EPISODE3_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToEpisodeOccupation(
+                PERSON16_FIRST_NAME, PERSON16_LAST_NAME, EPISODE4_TITLE, String.valueOf(RoleType.ACTOR));
+        occupationService.addPersonToEpisodeOccupation(
+                PERSON17_FIRST_NAME, PERSON17_LAST_NAME, EPISODE4_TITLE, String.valueOf(RoleType.ACTOR));
     }
 }

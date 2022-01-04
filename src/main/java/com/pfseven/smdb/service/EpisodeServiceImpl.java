@@ -33,6 +33,7 @@ public class EpisodeServiceImpl extends BaseServiceImpl<Episode> implements Epis
         }
 
         episode.addOccupation(occupation);
+        update(episode);
 
         logger.debug("Occupation[{}] added to Episode[{}]", occupation, episode);
     }
@@ -44,6 +45,7 @@ public class EpisodeServiceImpl extends BaseServiceImpl<Episode> implements Epis
         }
 
         episode.removeOccupation(occupation);
+        update(episode);
 
         logger.debug("Occupation[{}] removed to Episode[{}]", occupation, episode);
     }

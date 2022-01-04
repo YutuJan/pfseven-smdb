@@ -2,9 +2,7 @@ package com.pfseven.smdb.service;
 
 import com.pfseven.smdb.domain.Movie;
 import com.pfseven.smdb.domain.Occupation;
-import com.pfseven.smdb.domain.VideoEntertainment;
 import com.pfseven.smdb.repository.MovieRepository;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -35,6 +33,7 @@ public class MovieServiceImpl extends BaseServiceImpl<Movie> implements MovieSer
         }
 
         movie.addOccupation(occupation);
+        update(movie);
 
         logger.debug("Occupation[{}] added to Movie[{}]", occupation, movie);
     }
@@ -46,6 +45,7 @@ public class MovieServiceImpl extends BaseServiceImpl<Movie> implements MovieSer
         }
 
         movie.removeOccupation(occupation);
+        update(movie);
 
         logger.debug("Occupation[{}] removed to Movie[{}]", occupation, movie);
     }

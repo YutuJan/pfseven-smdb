@@ -1,5 +1,6 @@
 package com.pfseven.smdb.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -43,6 +44,7 @@ public abstract class VideoEntertainment extends BaseModel {
     @Column(name = "DISTRIBUTOR", nullable = false)
     private String distributor;
 
+    @JsonManagedReference("videoEntertainment")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)

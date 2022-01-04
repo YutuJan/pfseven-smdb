@@ -1,5 +1,6 @@
 package com.pfseven.smdb.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -35,6 +36,7 @@ public class Person extends BaseModel {
     @Column(name = "BIOGRAPHY", length = 10000)
     private String biography;
 
+    @JsonManagedReference("person")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @Column(name = "OCCUPATIONS")

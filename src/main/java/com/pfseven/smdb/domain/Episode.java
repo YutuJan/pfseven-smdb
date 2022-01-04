@@ -21,7 +21,7 @@ public class Episode extends VideoEntertainment {
     private Integer season;
 
     @JsonBackReference("episodes")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "SERIES_ID", referencedColumnName = "ID")
     private Series series;
 }

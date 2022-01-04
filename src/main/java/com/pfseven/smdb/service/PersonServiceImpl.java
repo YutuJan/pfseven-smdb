@@ -34,6 +34,7 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
         }
 
         person.addOccupation(occupation);
+        update(person);
 
         logger.debug("Occupation[{}] added to Person[{}]", occupation, person);
     }
@@ -45,6 +46,7 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
         }
 
         person.removeOccupation(occupation);
+        update(person);
 
         logger.debug("Occupation[{}] update to Person[{}]", occupation, person);
     }

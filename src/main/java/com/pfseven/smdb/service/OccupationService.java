@@ -5,17 +5,21 @@ import com.pfseven.smdb.domain.*;
 import java.util.List;
 
 public interface OccupationService extends BaseService<Occupation, Long> {
-    void addOccupation(Person person, Movie movie, Occupation occupation);
+    void addPersonToMovieOccupation(Long personId, Long movieId, String roleType);
 
-    void removeOccupation(Person person, Movie movie, Occupation occupation);
+    void addPersonToMovieOccupation(String firstName, String lastName, String title, String roleType);
 
-    void updateOccupation(Person person, Movie movie, Occupation occupation);
+    void removePersonToMovieOccupation(Long personId, Long movieId, Long occupationId);
 
-    void addOccupation(Person person, Episode episode, Occupation occupation);
+    void removePersonToMovieOccupation(String firstName, String lastName, String title, Long occupationId);
 
-    void removeOccupation(Person person, Episode episode, Occupation occupation);
+    void addPersonToEpisodeOccupation(Long personId, Long episodeId, String roleType);
 
-    void updateOccupation(Person person, Episode episode, Occupation occupation);
+    void addPersonToEpisodeOccupation(String firstName, String lastName, String title, String roleType);
+
+    void removePersonToEpisodeOccupation(Long personId, Long episodeId, Long occupationId);
+
+    void removePersonToEpisodeOccupation(String firstName, String lastName, String title, Long occupationId);
 
     List<Occupation> findAll(RoleType role);
 
