@@ -66,12 +66,15 @@ public abstract class VideoEntertainment extends BaseModel {
     }
 
     public void removeOccupation(Occupation occupation) {
+        Set<Occupation> setOfOccupations = new HashSet<>();
+
         for (Occupation o : occupations) {
             if (o.equals(occupation)) {
-                occupations.remove(occupation);
-                break;
+                continue;
             }
+            setOfOccupations.add(o);
         }
+        occupations = setOfOccupations;
     }
 
     public void updateOccupation(Occupation occupation) {
