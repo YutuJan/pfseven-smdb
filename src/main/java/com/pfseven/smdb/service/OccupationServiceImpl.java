@@ -150,26 +150,4 @@ public class OccupationServiceImpl extends BaseServiceImpl<Occupation> implement
         episodeService.removeOccupation(episode, occupation);
         delete(occupation);
     }
-
-    private void updateOccupation(Person person, Movie movie, Occupation occupation) {
-        update(occupation);
-        personService.updateOccupation(person, occupation);
-        movieService.updateOccupation(movie, occupation);
-    }
-
-    private void updateOccupation(Person person, Episode episode, Occupation occupation) {
-        update(occupation);
-        personService.updateOccupation(person, occupation);
-        episodeService.updateOccupation(episode, occupation);
-    }
-
-    @Override
-    public List<Occupation> findAll(RoleType role) {
-        return null;
-    }
-
-    @Override
-    public List<Occupation> getAll(RoleType role) {
-        return null;
-    }
 }

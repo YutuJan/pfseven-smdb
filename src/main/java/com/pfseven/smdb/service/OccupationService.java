@@ -20,8 +20,4 @@ public interface OccupationService extends BaseService<Occupation, Long> {
     void removePersonToEpisodeOccupation(Long personId, Long episodeId, Long occupationId);
 
     void removePersonToEpisodeOccupation(String firstName, String lastName, String title, Long occupationId);
-
-    List<Occupation> findAll(RoleType role);
-
-    List<Occupation> getAll(RoleType role);
 }
