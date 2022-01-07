@@ -7,4 +7,6 @@ public interface EpisodeRepository extends JpaRepository<Episode, Long> {
     Episode findEpisodeByTitle(String title);
 
     Episode getEpisodeByTitle(String title);
+
+    Episode findFirstByOrderByRatingDesc();
 }

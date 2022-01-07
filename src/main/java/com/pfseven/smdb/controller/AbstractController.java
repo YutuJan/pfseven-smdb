@@ -32,6 +32,23 @@ public abstract class AbstractController<T extends BaseModel> extends AbstractLo
      * }
      **/
 
+    @GetMapping
+    public ResponseEntity<ApiResponse<List<T>>> findAll() {
+        return ResponseEntity.ok(ApiResponse.<List<T>>builder().data(getService().findAll()).build());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ApiResponse<T>> find(@PathVariable final Long id) {
+        return ResponseEntity.ok(ApiResponse.<T>builder().data(getService().find(id)).build());
+    }
+
+    /**
+     @GetMapping("/{id}")
+     public ResponseEntity<ApiResponse<T>> get(@PathVariable final Long id) {
+     return ResponseEntity.ok(ApiResponse.<T>builder().data(getService().get(id)).build());
+     }
+     **/
+
     @PutMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@Valid @RequestBody final T entity) {
@@ -58,23 +75,6 @@ public abstract class AbstractController<T extends BaseModel> extends AbstractLo
      * return null;
      * }
      **/
-
-    @GetMapping
-    public ResponseEntity<ApiResponse<List<T>>> findAll() {
-        return ResponseEntity.ok(ApiResponse.<List<T>>builder().data(getService().findAll()).build());
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<T>> find(@PathVariable final Long id) {
-        return ResponseEntity.ok(ApiResponse.<T>builder().data(getService().find(id)).build());
-    }
-
-    /**
-    @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<T>> get(@PathVariable final Long id) {
-        return ResponseEntity.ok(ApiResponse.<T>builder().data(getService().get(id)).build());
-    }
-    **/
 
     protected HttpHeaders getNoCacheHeaders() {
         final HttpHeaders headers = new HttpHeaders();

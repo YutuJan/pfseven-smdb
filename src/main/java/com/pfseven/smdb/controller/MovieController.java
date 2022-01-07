@@ -4,12 +4,12 @@ import com.pfseven.smdb.domain.Movie;
 import com.pfseven.smdb.service.BaseService;
 import com.pfseven.smdb.service.MovieService;
 import com.pfseven.smdb.transfer.ApiResponse;
+import com.pfseven.smdb.transfer.TopRatedMovieDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,6 +25,16 @@ public class MovieController extends AbstractController<Movie> {
     @GetMapping("/get/{title}")
     public ResponseEntity<ApiResponse<Movie>> get(@PathVariable final String title) {
         return ResponseEntity.ok(ApiResponse.<Movie>builder().data(movieService.get(title)).build());
+    }
+
+    @GetMapping(params = "r")
+    public ResponseEntity<ApiResponse<List<Movie>>> findByRating(@RequestParam("r") final Double rating) {
+        return ResponseEntity.ok(ApiResponse.<List<Movie>>builder().data(movieService.findMoviesByRatingIsGreaterThanEqual(rating)).build());
+    }
+
+    @GetMapping("/top")
+    public ResponseEntity<ApiResponse<TopRatedMovieDto>> findTopRatedMovie() {
+        return ResponseEntity.ok(ApiResponse.<TopRatedMovieDto>builder().data(movieService.findTopRatedMovie()).build());
     }
 
     @Override

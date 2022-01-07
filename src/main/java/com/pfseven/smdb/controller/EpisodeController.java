@@ -28,6 +28,11 @@ public class EpisodeController extends AbstractController<Episode> {
         return ResponseEntity.ok(ApiResponse.<Episode>builder().data(episodeService.find(title)).build());
     }
 
+    @GetMapping("/top")
+    public ResponseEntity<ApiResponse<Episode>> findTopRatedEpisode() {
+        return ResponseEntity.ok(ApiResponse.<Episode>builder().data(episodeService.findFirstByOrderByRatingDesc()).build());
+    }
+
     @Override
     protected BaseService<Episode, Long> getService() {
         return episodeService;
