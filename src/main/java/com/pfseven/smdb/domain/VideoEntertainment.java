@@ -76,9 +76,4 @@ public abstract class VideoEntertainment extends BaseModel {
         }
         occupations = setOfOccupations;
     }
-
-    public void updateOccupation(Occupation occupation) {
-        removeOccupation(occupation);
-        addOccupation(occupation);
-    }
 }

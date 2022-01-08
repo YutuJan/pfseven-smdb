@@ -5,11 +5,9 @@ import com.pfseven.smdb.service.BaseService;
 import com.pfseven.smdb.service.MovieService;
 import com.pfseven.smdb.transfer.ApiResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,6 +23,40 @@ public class MovieController extends AbstractController<Movie> {
     @GetMapping("/get/{title}")
     public ResponseEntity<ApiResponse<Movie>> get(@PathVariable final String title) {
         return ResponseEntity.ok(ApiResponse.<Movie>builder().data(movieService.get(title)).build());
+    }
+
+    @PostMapping("/person_id/{person_id}/movie_id/{movie_id}/role_type/{role_type}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void addPersonToMovieOccupation(@PathVariable("person_id") final Long personId,
+                                           @PathVariable("movie_id") final Long movieId,
+                                           @PathVariable("role_type") final String roleType) {
+        movieService.addPersonToMovieOccupation(personId, movieId, roleType);
+    }
+
+    @DeleteMapping("/person_id/{person_id}/movie_id/{movie_id}/role_type/{role_type}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void removePersonToMovieOccupation(@PathVariable("person_id") final Long personId,
+                                              @PathVariable("movie_id") final Long movieId,
+                                              @PathVariable("role_type") final String roleType) {
+        movieService.removePersonToMovieOccupation(personId, movieId, roleType);
+    }
+
+    @PostMapping("/person_fn/{person_fn}/person_ln/{person_ln}/movie_title/{movie_title}/role_type/{role_type}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void addPersonToMovieOccupation(@PathVariable("person_fn") final String firstName,
+                                           @PathVariable("person_ln") final String lastName,
+                                           @PathVariable("movie_title") final String title,
+                                           @PathVariable("role_type") final String roleType) {
+        movieService.addPersonToMovieOccupation(firstName, lastName, title, roleType);
+    }
+
+    @DeleteMapping("/person_fn/{person_fn}/person_ln/{person_ln}/movie_title/{movie_title}/role_type/{role_type}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void removePersonToMovieOccupation(@PathVariable("person_fn") final String firstName,
+                                              @PathVariable("person_ln") final String lastName,
+                                              @PathVariable("movie_title") final String title,
+                                              @PathVariable("role_type") final String roleType) {
+        movieService.removePersonToMovieOccupation(firstName, lastName, title, roleType);
     }
 
     @Override

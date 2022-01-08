@@ -12,5 +12,11 @@ public interface MovieService extends BaseService<Movie, Long> {
 
     void removeOccupation(Movie movie, Occupation occupation);
 
-    void updateOccupation(Movie movie, Occupation occupation);
+    void addPersonToMovieOccupation(Long personId, Long movieId, String roleType);
+
+    void addPersonToMovieOccupation(String firstName, String lastName, String title, String roleType);
+
+    void removePersonToMovieOccupation(Long personId, Long movieId, String roleType);
+
+    void removePersonToMovieOccupation(String firstName, String lastName, String title, String roleType);
 }
