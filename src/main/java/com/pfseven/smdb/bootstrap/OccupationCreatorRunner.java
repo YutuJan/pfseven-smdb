@@ -2,7 +2,7 @@ package com.pfseven.smdb.bootstrap;
 
 import com.pfseven.smdb.base.AbstractLogComponent;
 import com.pfseven.smdb.domain.*;
-import com.pfseven.smdb.service.*;
+import com.pfseven.smdb.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Profile("dev")
 @RequiredArgsConstructor
 public class OccupationCreatorRunner extends AbstractLogComponent implements CommandLineRunner {
-    private final OccupationService occupationService;
+    private final PersonService personService;
 
     private final String PERSON1_FIRST_NAME = "Jackie";
     private final String PERSON2_FIRST_NAME = "Chris";
@@ -77,65 +77,65 @@ public class OccupationCreatorRunner extends AbstractLogComponent implements Com
     }
 
     public void createBunchOfOccupations() {
-        occupationService.addPersonToMovieOccupation(
+        personService.addPersonToMovieOccupation(
                 PERSON1_FIRST_NAME, PERSON1_LAST_NAME, MOVIE3_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToMovieOccupation(
+        personService.addPersonToMovieOccupation(
                 PERSON2_FIRST_NAME, PERSON2_LAST_NAME, MOVIE3_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToMovieOccupation(
+        personService.addPersonToMovieOccupation(
                 PERSON3_FIRST_NAME, PERSON3_LAST_NAME, MOVIE2_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToMovieOccupation(
+        personService.addPersonToMovieOccupation(
                 PERSON4_FIRST_NAME, PERSON4_LAST_NAME, MOVIE1_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToMovieOccupation(
+        personService.addPersonToMovieOccupation(
                 PERSON5_FIRST_NAME, PERSON5_LAST_NAME, MOVIE1_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToMovieOccupation(
+        personService.addPersonToMovieOccupation(
                 PERSON6_FIRST_NAME, PERSON6_LAST_NAME, MOVIE1_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToMovieOccupation(
+        personService.addPersonToMovieOccupation(
                 PERSON7_FIRST_NAME, PERSON7_LAST_NAME, MOVIE4_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToMovieOccupation(
+        personService.addPersonToMovieOccupation(
                 PERSON8_FIRST_NAME, PERSON8_LAST_NAME, MOVIE4_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToMovieOccupation(
+        personService.addPersonToMovieOccupation(
                 PERSON1_FIRST_NAME, PERSON1_LAST_NAME, MOVIE5_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToMovieOccupation(
+        personService.addPersonToMovieOccupation(
                 PERSON7_FIRST_NAME, PERSON7_LAST_NAME, MOVIE5_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToMovieOccupation(
+        personService.addPersonToMovieOccupation(
                 PERSON9_FIRST_NAME, PERSON9_LAST_NAME, MOVIE5_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToMovieOccupation(
+        personService.addPersonToMovieOccupation(
                 PERSON10_FIRST_NAME, PERSON10_LAST_NAME, MOVIE5_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToMovieOccupation(
+        personService.addPersonToMovieOccupation(
                 PERSON11_FIRST_NAME, PERSON11_LAST_NAME, MOVIE5_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToMovieOccupation(
+        personService.addPersonToMovieOccupation(
                 PERSON12_FIRST_NAME, PERSON12_LAST_NAME, MOVIE5_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToMovieOccupation(
+        personService.addPersonToMovieOccupation(
                 PERSON13_FIRST_NAME, PERSON13_LAST_NAME, MOVIE7_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToMovieOccupation(
+        personService.addPersonToMovieOccupation(
                 PERSON14_FIRST_NAME, PERSON14_LAST_NAME, MOVIE7_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToMovieOccupation(
+        personService.addPersonToMovieOccupation(
                 PERSON15_FIRST_NAME, PERSON15_LAST_NAME, MOVIE10_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToMovieOccupation(
+        personService.addPersonToMovieOccupation(
                 PERSON20_FIRST_NAME, PERSON20_LAST_NAME, MOVIE10_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToMovieOccupation(
+        personService.addPersonToMovieOccupation(
                 PERSON18_FIRST_NAME, PERSON18_LAST_NAME, MOVIE9_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToMovieOccupation(
+        personService.addPersonToMovieOccupation(
                 PERSON19_FIRST_NAME, PERSON19_LAST_NAME, MOVIE9_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToMovieOccupation(
+        personService.addPersonToMovieOccupation(
                 PERSON11_FIRST_NAME, PERSON11_LAST_NAME, MOVIE6_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToMovieOccupation(
+        personService.addPersonToMovieOccupation(
                 PERSON12_FIRST_NAME, PERSON12_LAST_NAME, MOVIE6_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToMovieOccupation(
+        personService.addPersonToMovieOccupation(
                 PERSON18_FIRST_NAME, PERSON18_LAST_NAME, MOVIE8_TITLE, String.valueOf(RoleType.ACTOR));
 
 
-        occupationService.addPersonToEpisodeOccupation(
+        personService.addPersonToEpisodeOccupation(
                 PERSON15_FIRST_NAME, PERSON15_LAST_NAME, EPISODE1_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToEpisodeOccupation(
+        personService.addPersonToEpisodeOccupation(
                 PERSON15_FIRST_NAME, PERSON15_LAST_NAME, EPISODE2_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToEpisodeOccupation(
+        personService.addPersonToEpisodeOccupation(
                 PERSON16_FIRST_NAME, PERSON16_LAST_NAME, EPISODE3_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToEpisodeOccupation(
+        personService.addPersonToEpisodeOccupation(
                 PERSON17_FIRST_NAME, PERSON17_LAST_NAME, EPISODE3_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToEpisodeOccupation(
+        personService.addPersonToEpisodeOccupation(
                 PERSON16_FIRST_NAME, PERSON16_LAST_NAME, EPISODE4_TITLE, String.valueOf(RoleType.ACTOR));
-        occupationService.addPersonToEpisodeOccupation(
+        personService.addPersonToEpisodeOccupation(
                 PERSON17_FIRST_NAME, PERSON17_LAST_NAME, EPISODE4_TITLE, String.valueOf(RoleType.ACTOR));
     }
 }

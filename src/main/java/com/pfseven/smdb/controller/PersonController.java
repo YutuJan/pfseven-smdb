@@ -26,6 +26,74 @@ public class PersonController extends AbstractController<Person> {
         return ResponseEntity.ok(ApiResponse.<Person>builder().data(personService.get(firstName, lastName)).build());
     }
 
+    @PostMapping("/person_id/{person_id}/movie_id/{movie_id}/role_type/{role_type}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void addPersonToMovieOccupation(@PathVariable("person_id") final Long personId,
+                                           @PathVariable("movie_id") final Long movieId,
+                                           @PathVariable("role_type") final String roleType) {
+        personService.addPersonToMovieOccupation(personId, movieId, roleType);
+    }
+
+    @DeleteMapping("/person_id/{person_id}/movie_id/{movie_id}/role_type/{role_type}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void removePersonToMovieOccupation(@PathVariable("person_id") final Long personId,
+                                              @PathVariable("movie_id") final Long movieId,
+                                              @PathVariable("role_type") final String roleType) {
+        personService.removePersonToMovieOccupation(personId, movieId, roleType);
+    }
+
+    @PostMapping("/person_id/{person_id}/episode_id/{episode_id}/role_type/{role_type}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void addPersonToEpisodeOccupation(@PathVariable("person_id") final Long personId,
+                                             @PathVariable("episode_id") final Long episodeId,
+                                             @PathVariable("role_type") final String roleType) {
+        personService.addPersonToEpisodeOccupation(personId, episodeId, roleType);
+    }
+
+    @DeleteMapping("/person_id/{person_id}/episode_id/{episode_id}/role_type/{role_type}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void removePersonToEpisodeOccupation(@PathVariable("person_id") final Long personId,
+                                                @PathVariable("episode_id") final Long episodeId,
+                                                @PathVariable("role_type") final String roleType) {
+        personService.removePersonToEpisodeOccupation(personId, episodeId, roleType);
+    }
+
+    @PostMapping("/person_fn/{person_fn}/person_ln/{person_ln}/movie_title/{movie_title}/role_type/{role_type}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void addPersonToMovieOccupation(@PathVariable("person_fn") final String firstName,
+                                           @PathVariable("person_ln") final String lastName,
+                                           @PathVariable("movie_title") final String title,
+                                           @PathVariable("role_type") final String roleType) {
+        personService.addPersonToMovieOccupation(firstName, lastName, title, roleType);
+    }
+
+    @DeleteMapping("/person_fn/{person_fn}/person_ln/{person_ln}/movie_title/{movie_title}/role_type/{role_type}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void removePersonToMovieOccupation(@PathVariable("person_fn") final String firstName,
+                                              @PathVariable("person_ln") final String lastName,
+                                              @PathVariable("movie_title") final String title,
+                                              @PathVariable("role_type") final String roleType) {
+        personService.removePersonToMovieOccupation(firstName, lastName, title, roleType);
+    }
+
+    @PostMapping("/person_fn/{person_fn}/person_ln/{person_ln}/episode_title/{episode_title}/role_type/{role_type}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void addPersonToEpisodeOccupation(@PathVariable("person_fn") final String firstName,
+                                             @PathVariable("person_ln") final String lastName,
+                                             @PathVariable("episode_title") final String title,
+                                             @PathVariable("role_type") final String roleType) {
+        personService.addPersonToEpisodeOccupation(firstName, lastName, title, roleType);
+    }
+
+    @DeleteMapping("/person_fn/{person_fn}/person_ln/{person_ln}/episode_title/{episode_title}/role_type/{role_type}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void removePersonToEpisodeOccupation(@PathVariable("person_fn") final String firstName,
+                                                @PathVariable("person_ln") final String lastName,
+                                                @PathVariable("episode_title") final String title,
+                                                @PathVariable("role_type") final String roleType) {
+        personService.removePersonToEpisodeOccupation(firstName, lastName, title, roleType);
+    }
+
     @Override
     protected BaseService<Person, Long> getService() {
         return personService;

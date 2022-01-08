@@ -12,5 +12,11 @@ public interface EpisodeService extends BaseService<Episode, Long> {
 
     void removeOccupation(Episode episode, Occupation occupation);
 
-    void updateOccupation(Episode episode, Occupation occupation);
+    void addPersonToEpisodeOccupation(Long personId, Long episodeId, String roleType);
+
+    void addPersonToEpisodeOccupation(String firstName, String lastName, String title, String roleType);
+
+    void removePersonToEpisodeOccupation(Long personId, Long episodeId, String roleType);
+
+    void removePersonToEpisodeOccupation(String firstName, String lastName, String title, String roleType);
 }

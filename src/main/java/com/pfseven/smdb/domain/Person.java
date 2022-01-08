@@ -65,9 +65,4 @@ public class Person extends BaseModel {
             }
         }
     }
-
-    public void updateOccupation(Occupation occupation) {
-        removeOccupation(occupation);
-        addOccupation(occupation);
-    }
 }
