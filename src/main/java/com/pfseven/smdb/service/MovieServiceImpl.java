@@ -1,5 +1,6 @@
 package com.pfseven.smdb.service;
 
+import com.pfseven.smdb.domain.Genre;
 import com.pfseven.smdb.domain.Movie;
 import com.pfseven.smdb.domain.Occupation;
 import com.pfseven.smdb.repository.MovieRepository;
@@ -37,6 +38,11 @@ public class MovieServiceImpl extends BaseServiceImpl<Movie> implements MovieSer
     @Override
     public TopRatedMovieDto findTopRatedMovie() {
         return movieRepository.findTopRatedMovie();
+    }
+
+    @Override
+    public List<Movie> findMoviesByGenresContaining(Genre genre) {
+        return movieRepository.findMoviesByGenresContaining(genre);
     }
 
     @Override

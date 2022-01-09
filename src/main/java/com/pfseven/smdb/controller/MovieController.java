@@ -1,5 +1,6 @@
 package com.pfseven.smdb.controller;
 
+import com.pfseven.smdb.domain.Genre;
 import com.pfseven.smdb.domain.Movie;
 import com.pfseven.smdb.service.BaseService;
 import com.pfseven.smdb.service.MovieService;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/movie")
+@RequestMapping("/movies")
 public class MovieController extends AbstractController<Movie> {
     private final MovieService movieService;
 
@@ -35,6 +36,12 @@ public class MovieController extends AbstractController<Movie> {
     @GetMapping("/top")
     public ResponseEntity<ApiResponse<TopRatedMovieDto>> findTopRatedMovie() {
         return ResponseEntity.ok(ApiResponse.<TopRatedMovieDto>builder().data(movieService.findTopRatedMovie()).build());
+    }
+
+    @GetMapping(params = "g")
+    public ResponseEntity<ApiResponse<List<Movie>>> findMoviesByGenresContaining(@RequestParam("g") final String genre) {
+        Genre genre1 = Genre.valueOf(genre);
+        return ResponseEntity.ok(ApiResponse.<List<Movie>>builder().data(movieService.findMoviesByGenresContaining(genre1)).build());
     }
 
     @Override

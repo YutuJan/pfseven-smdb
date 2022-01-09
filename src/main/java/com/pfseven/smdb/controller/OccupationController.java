@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/occupation")
+@RequestMapping("/occupations")
 public class OccupationController extends AbstractController<Occupation> {
     private final OccupationService occupationService;
 
