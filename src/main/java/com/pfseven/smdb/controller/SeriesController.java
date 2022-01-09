@@ -1,6 +1,8 @@
 package com.pfseven.smdb.controller;
 
 import com.pfseven.smdb.domain.Episode;
+import com.pfseven.smdb.domain.Genre;
+import com.pfseven.smdb.domain.Movie;
 import com.pfseven.smdb.domain.Series;
 import com.pfseven.smdb.service.BaseService;
 import com.pfseven.smdb.service.EpisodeService;
@@ -13,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -29,6 +32,12 @@ public class SeriesController extends AbstractController<Series> {
     @GetMapping("/find/{title}")
     public ResponseEntity<ApiResponse<Series>> find(@PathVariable final String title) {
         return ResponseEntity.ok(ApiResponse.<Series>builder().data(seriesService.find(title)).build());
+    }
+
+    @GetMapping(params = "g")
+    public ResponseEntity<ApiResponse<List<Series>>> findSeriesByGenresContaining(@RequestParam("g") final String genre) {
+        Genre genre1 = Genre.valueOf(genre);
+        return ResponseEntity.ok(ApiResponse.<List<Series>>builder().data(seriesService.findByGenre(genre1)).build());
     }
 
     @PostMapping("/add")
