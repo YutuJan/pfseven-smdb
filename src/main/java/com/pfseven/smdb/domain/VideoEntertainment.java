@@ -27,7 +27,7 @@ public abstract class VideoEntertainment extends BaseModel {
     @Column(name = "SUMMARY", length = 1000)
     private String summary;
 
-    @NotNull(message = "Movie's duaration cannot be null")
+    @NotNull(message = "Movie's duration cannot be null")
     @Column(name = "DURATION_IN_SECONDS", nullable = false)
     private Integer durationInSeconds;
 
@@ -49,31 +49,13 @@ public abstract class VideoEntertainment extends BaseModel {
     @EqualsAndHashCode.Exclude
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @Column(name = "CAST_N_CREW")
-    private Set<Occupation> occupations = new HashSet<>();
+    protected Set<Occupation> occupations = new HashSet<>();
 
     public void addOccupation(Occupation occupation) {
-        boolean occupationAlreadyExists = false;
-        for (Occupation o : occupations) {
-            if (o.equals(occupation)) {
-                occupationAlreadyExists = true;
-                break;
-            }
-        }
-
-        if (!occupationAlreadyExists) {
-            occupations.add(occupation);
-        }
+        occupations.add(occupation);
     }
 
     public void removeOccupation(Occupation occupation) {
-        Set<Occupation> setOfOccupations = new HashSet<>();
-
-        for (Occupation o : occupations) {
-            if (o.equals(occupation)) {
-                continue;
-            }
-            setOfOccupations.add(o);
-        }
-        occupations = setOfOccupations;
+        occupations.remove(occupation);
     }
 }

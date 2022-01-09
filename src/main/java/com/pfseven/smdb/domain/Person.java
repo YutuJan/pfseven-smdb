@@ -15,7 +15,8 @@ import java.util.Set;
 @AllArgsConstructor
 @SuperBuilder
 @Entity
-@Table(name = "PEOPLE")
+@Table(name = "PEOPLE",
+        uniqueConstraints = @UniqueConstraint(name = "UniqueFirstnameAndLastname", columnNames = {"FIRST_NAME", "LAST_NAME"}))
 @SequenceGenerator(name = "idGenerator", sequenceName = "PEOPLE_SEQ", initialValue = 1, allocationSize = 1)
 public class Person extends BaseModel {
     @NotNull(message = "Person's firstname cannot be null")
@@ -44,25 +45,10 @@ public class Person extends BaseModel {
     private Set<Occupation> occupations = new HashSet<>();
 
     public void addOccupation(Occupation occupation) {
-        boolean occupationAlreadyExists = false;
-        for (Occupation o : occupations) {
-            if (o.equals(occupation)) {
-                occupationAlreadyExists = true;
-                break;
-            }
-        }
-
-        if (!occupationAlreadyExists) {
-            occupations.add(occupation);
-        }
+        occupations.add(occupation);
     }
 
     public void removeOccupation(Occupation occupation) {
-        for (Occupation o : occupations) {
-            if (o.equals(occupation)) {
-                occupations.remove(occupation);
-                break;
-            }
-        }
+        occupations.remove(occupation);
     }
 }

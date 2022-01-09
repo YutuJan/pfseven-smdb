@@ -5,6 +5,9 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -19,7 +22,6 @@ import java.util.Set;
 @Table(name = "SERIES")
 @SequenceGenerator(name = "idGenerator", sequenceName = "SERIES_SEQ", initialValue = 1, allocationSize = 1)
 public class Series extends BaseModel {
-
     @NotNull(message = "Series' title cannot be null")
     @Column(name = "TITLE", nullable = false, unique = true)
     private String title;
@@ -47,23 +49,8 @@ public class Series extends BaseModel {
     private Set<Genre> genres = new HashSet<>();
 
     public void addEpisode(Episode episode) {
-        boolean episodeAlreadyExists = false;
-
-        if (episodes == null) {
-            episodes = new HashSet<>();
-            episodes.add(episode);
-        } else {
-            for (Episode e : episodes) {
-                if (e.equals(episode)) {
-                    episodeAlreadyExists = true;
-                    break;
-                }
-            }
-
-            if (!episodeAlreadyExists) {
-                episodes.add(episode);
-            }
-        }
+        createEpisodesIfItIsNull();
+        episodes.add(episode);
     }
 
     public void removeEpisode(Episode episode) {
@@ -78,5 +65,12 @@ public class Series extends BaseModel {
     public void updateEpisode(Episode episode) {
         removeEpisode(episode);
         addEpisode(episode);
+    }
+
+    //For some reason without this method our application crashes.
+    private void createEpisodesIfItIsNull() {
+        if (episodes == null) {
+            episodes = new HashSet<>();
+        }
     }
 }
