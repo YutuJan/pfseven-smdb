@@ -33,14 +33,14 @@ public class Series extends BaseModel {
     @JsonManagedReference("episodes")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER, mappedBy = "series", targetEntity = Episode.class)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER, mappedBy = "series",
+            targetEntity = Episode.class)
     private Set<Episode> episodes = new HashSet<>();
 
     @Enumerated(EnumType.STRING)
     @Column(name = "CATEGORY", nullable = false)
     private SeriesCategory seriesCategory;
 
-    @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @ElementCollection
     @Enumerated(EnumType.STRING)
