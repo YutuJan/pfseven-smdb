@@ -12,6 +12,9 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Service
 @RequiredArgsConstructor
 public class EpisodeServiceImpl extends BaseServiceImpl<Episode> implements EpisodeService {
@@ -27,6 +30,15 @@ public class EpisodeServiceImpl extends BaseServiceImpl<Episode> implements Epis
 
     JpaRepository<Episode, Long> getRepository() {
         return episodeRepository;
+    }
+
+    @Override
+    public void deleteOccupations(Episode episode) {
+        Set<Occupation> occupations = new HashSet<>(episode.getOccupations());
+
+        for (Occupation o : occupations) {
+            removeOccupation(o.getPerson(), episode, o);
+        }
     }
 
     @Override

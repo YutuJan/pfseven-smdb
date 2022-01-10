@@ -25,6 +25,12 @@ public class MovieController extends AbstractController<Movie> {
         return ResponseEntity.ok(ApiResponse.<Movie>builder().data(movieService.get(title)).build());
     }
 
+    @DeleteMapping("/delete/{title}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteByTitle(@PathVariable("title") final String title) {
+        movieService.deleteByTitle(title);
+    }
+
     @PostMapping("/person_id/{person_id}/movie_id/{movie_id}/role_type/{role_type}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void addPersonToMovieOccupation(@PathVariable("person_id") final Long personId,

@@ -27,6 +27,13 @@ public class PersonController extends AbstractController<Person> {
         return ResponseEntity.ok(ApiResponse.<Person>builder().data(personService.get(firstName, lastName)).build());
     }
 
+    @DeleteMapping("/delete/person_fn/{person_fn}/person_ln/{person_ln}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteByName(@PathVariable("person_fn") final String firstName,
+                             @PathVariable("person_ln") final String lastName) {
+        personService.deleteByName(firstName, lastName);
+    }
+
     @PostMapping("/person_id/{person_id}/movie_id/{movie_id}/role_type/{role_type}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void addPersonToMovieOccupation(@PathVariable("person_id") final Long personId,

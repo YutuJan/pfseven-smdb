@@ -46,7 +46,9 @@ public class SeriesServiceImpl extends BaseServiceImpl<Series> implements Series
             return;
         }
 
-        episodeService.delete(episode);
+        episodeService.deleteOccupations(episode);
+        series.removeEpisode(episode);
+        update(series);
 
         logger.debug("Episode[{}] removed from Series[{}]", episode, series);
     }

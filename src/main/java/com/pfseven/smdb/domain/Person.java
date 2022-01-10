@@ -48,7 +48,17 @@ public class Person extends BaseModel {
         occupations.add(occupation);
     }
 
+    //For some unknown simply removing an occupation doesn't always work well.
     public void removeOccupation(Occupation occupation) {
-        occupations.remove(occupation);
+        Set<Occupation> setOfOccupations = new HashSet<>();
+
+        for (Occupation o : occupations) {
+            if (o.equals(occupation)) {
+                continue;
+            }
+            setOfOccupations.add(o);
+        }
+
+        occupations = setOfOccupations;
     }
 }

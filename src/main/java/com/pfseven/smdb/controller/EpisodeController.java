@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/episode")
@@ -23,6 +25,26 @@ public class EpisodeController extends AbstractController<Episode> {
     @GetMapping("/find/{title}")
     public ResponseEntity<ApiResponse<Episode>> find(@PathVariable final String title) {
         return ResponseEntity.ok(ApiResponse.<Episode>builder().data(episodeService.find(title)).build());
+    }
+
+    @Override
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@Valid @RequestBody final Episode entity) {
+        //TODO call the seriesController to do the job
+    }
+
+    @Override
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteById(@PathVariable("id") final Long id) {
+        //TODO call the seriesController to do the job
+    }
+
+    @DeleteMapping("/delete/{title}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteByTitle(@PathVariable("title") final String title) {
+        //TODO call the seriesController to do the job
     }
 
     @PostMapping("/person_id/{person_id}/episode_id/{episode_id}/role_type/{role_type}")

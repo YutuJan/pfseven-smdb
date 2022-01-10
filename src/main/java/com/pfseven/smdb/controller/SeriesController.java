@@ -69,12 +69,10 @@ public class SeriesController extends AbstractController<Series> {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeEpisode(@PathVariable("series_title") final String series_title,
                               @PathVariable("episode_title") final String episode_title) {
-        System.out.println("In SeriesController " + 1);
         Series series = seriesService.find(series_title);
         Episode episode = episodeService.find(episode_title);
 
         if (seriesService.exists(series)) {
-            System.out.println("In SeriesController " + 2);
             seriesService.removeEpisode(series, episode);
         }
     }

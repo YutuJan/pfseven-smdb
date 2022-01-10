@@ -8,6 +8,8 @@ public interface PersonService extends BaseService<Person, Long> {
 
     Person find(String firstName, String lastName);
 
+    void deleteByName(String firstName, String lastName);
+
     void addOccupation(Person person, Occupation occupation);
 
     void removeOccupation(Person person, Occupation occupation);

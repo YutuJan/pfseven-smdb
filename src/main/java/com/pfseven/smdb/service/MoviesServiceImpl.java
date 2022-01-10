@@ -15,6 +15,9 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Service
 @RequiredArgsConstructor
 public class MoviesServiceImpl extends BaseServiceImpl<Movie> implements MovieService {
@@ -30,6 +33,48 @@ public class MoviesServiceImpl extends BaseServiceImpl<Movie> implements MovieSe
 
     JpaRepository<Movie, Long> getRepository() {
         return movieRepository;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED,
+            rollbackFor = Exception.class)
+    public void delete(Movie entity) {
+        Movie movie = find(entity.getTitle());
+        Set<Occupation> occupations = new HashSet<>(movie.getOccupations());
+
+        for (Occupation o : occupations) {
+            removeOccupation(o.getPerson(), movie, o);
+        }
+
+        super.delete(movie);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED,
+            rollbackFor = Exception.class)
+    public void deleteById(Long id) {
+        Movie movie = find(id);
+        Set<Occupation> occupations = new HashSet<>(movie.getOccupations());
+
+        for (Occupation o : occupations) {
+            removeOccupation(o.getPerson(), movie, o);
+        }
+
+        super.deleteById(id);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED,
+            rollbackFor = Exception.class)
+    public void deleteByTitle(String title) {
+        Movie movie = find(title);
+        Set<Occupation> occupations = new HashSet<>(movie.getOccupations());
+
+        for (Occupation o : occupations) {
+            removeOccupation(o.getPerson(), movie, o);
+        }
+
+        super.delete(movie);
     }
 
     @Override

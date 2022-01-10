@@ -7,6 +7,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +35,70 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
     @Override
     JpaRepository<Person, Long> getRepository() {
         return personRepository;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED,
+            rollbackFor = Exception.class)
+    public void delete(Person entity) {
+        Person person = find(entity.getFirstName(), entity.getLastName());
+        Set<Occupation> occupations = new HashSet<>(person.getOccupations());
+
+        for (Occupation o : occupations) {
+            Movie movie = movieService.find(o.getVideoEntertainment().getTitle());
+            Episode episode = episodeService.find(o.getVideoEntertainment().getTitle());
+            if (movie != null && episode == null) {
+                removeOccupation(person, movie, o);
+            }
+            if (movie == null && episode != null) {
+                removeOccupation(person, episode, o);
+            }
+        }
+
+        super.delete(person);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED,
+            rollbackFor = Exception.class)
+    public void deleteById(Long id) {
+        Person person = find(id);
+        Set<Occupation> occupations = new HashSet<>(person.getOccupations());
+
+        for (Occupation o : occupations) {
+            Movie movie = movieService.find(o.getVideoEntertainment().getTitle());
+            Episode episode = episodeService.find(o.getVideoEntertainment().getTitle());
+            if (movie != null && episode == null) {
+                removeOccupation(person, movie, o);
+            }
+            if (movie == null && episode != null) {
+                removeOccupation(person, episode, o);
+            }
+        }
+
+        super.delete(person);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED,
+            rollbackFor = Exception.class)
+    public void deleteByName(String firstName, String lastName) {
+        Person person = find(firstName, lastName);
+        Set<Occupation> occupations = new HashSet<>(person.getOccupations());
+
+        for (Occupation o : occupations) {
+            Movie movie = movieService.find(o.getVideoEntertainment().getTitle());
+            Episode episode = episodeService.find(o.getVideoEntertainment().getTitle());
+            if (movie != null && episode == null) {
+                removeOccupation(person, movie, o);
+            }
+            if (movie == null && episode != null) {
+                removeOccupation(person, episode, o);
+            }
+            break;
+        }
+
+        super.delete(person);
     }
 
     @Override
@@ -163,8 +233,10 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
             return;
         }
 
+        System.out.println("Person's occupations: " + person.getOccupations().size());
         person.removeOccupation(occupation);
         update(person);
+        System.out.println("Person's occupations: " + person.getOccupations().size());
 
         logger.debug("Occupation[{}] update to Person[{}]", occupation, person);
     }
