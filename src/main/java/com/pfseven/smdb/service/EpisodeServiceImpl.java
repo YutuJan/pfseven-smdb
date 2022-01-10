@@ -5,6 +5,7 @@ import com.pfseven.smdb.domain.Occupation;
 import com.pfseven.smdb.domain.Person;
 import com.pfseven.smdb.domain.RoleType;
 import com.pfseven.smdb.repository.EpisodeRepository;
+import com.pfseven.smdb.repository.OccupationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class EpisodeServiceImpl extends BaseServiceImpl<Episode> implements EpisodeService {
     private final EpisodeRepository episodeRepository;
+    private final OccupationRepository occupationRepository;
     private PersonService personService;
 
     @Autowired
@@ -35,30 +37,6 @@ public class EpisodeServiceImpl extends BaseServiceImpl<Episode> implements Epis
     @Override
     public Episode find(String title) {
         return episodeRepository.findEpisodeByTitle(title);
-    }
-
-    @Override
-    public void addOccupation(Episode episode, Occupation occupation) {
-        if (isNull(occupation) || isNull(episode)) {
-            return;
-        }
-
-        episode.addOccupation(occupation);
-        update(episode);
-
-        logger.debug("Occupation[{}] added to Episode[{}]", occupation, episode);
-    }
-
-    @Override
-    public void removeOccupation(Episode episode, Occupation occupation) {
-        if (isNull(occupation) || isNull(episode)) {
-            return;
-        }
-
-        episode.removeOccupation(occupation);
-        update(episode);
-
-        logger.debug("Occupation[{}] removed to Episode[{}]", occupation, episode);
     }
 
     @Override
@@ -113,7 +91,32 @@ public class EpisodeServiceImpl extends BaseServiceImpl<Episode> implements Epis
         removeOccupation(person, episode, occupation);
     }
 
+    @Override
+    public void addOccupation(Episode episode, Occupation occupation) {
+        if (isNull(occupation) || isNull(episode)) {
+            return;
+        }
+
+        episode.addOccupation(occupation);
+        update(episode);
+
+        logger.debug("Occupation[{}] added to Episode[{}]", occupation, episode);
+    }
+
+    @Override
+    public void removeOccupation(Episode episode, Occupation occupation) {
+        if (isNull(occupation) || isNull(episode)) {
+            return;
+        }
+
+        episode.removeOccupation(occupation);
+        update(episode);
+
+        logger.debug("Occupation[{}] removed to Episode[{}]", occupation, episode);
+    }
+
     private void addOccupation(Person person, Episode episode, Occupation occupation) {
+        occupationRepository.save(occupation);
         personService.addOccupation(person, occupation);
         addOccupation(episode, occupation);
     }

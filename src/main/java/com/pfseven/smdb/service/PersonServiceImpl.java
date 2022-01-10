@@ -1,6 +1,7 @@
 package com.pfseven.smdb.service;
 
 import com.pfseven.smdb.domain.*;
+import com.pfseven.smdb.repository.OccupationRepository;
 import com.pfseven.smdb.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class PersonServiceImpl extends BaseServiceImpl<Person> implements PersonService {
     private final PersonRepository personRepository;
+    private final OccupationRepository occupationRepository;
     private MovieService movieService;
     private EpisodeService episodeService;
 
@@ -143,26 +145,6 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
         removeOccupation(person, episode, occupation);
     }
 
-    private void addOccupation(Person person, Movie movie, Occupation occupation) {
-        addOccupation(person, occupation);
-        movieService.addOccupation(movie, occupation);
-    }
-
-    private void removeOccupation(Person person, Movie movie, Occupation occupation) {
-        removeOccupation(person, occupation);
-        movieService.removeOccupation(movie, occupation);
-    }
-
-    private void addOccupation(Person person, Episode episode, Occupation occupation) {
-        addOccupation(person, occupation);
-        episodeService.addOccupation(episode, occupation);
-    }
-
-    private void removeOccupation(Person person, Episode episode, Occupation occupation) {
-        removeOccupation(person, occupation);
-        episodeService.removeOccupation(episode, occupation);
-    }
-
     @Override
     public void addOccupation(Person person, Occupation occupation) {
         if (isNull(occupation) || isNull(person)) {
@@ -185,6 +167,28 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
         update(person);
 
         logger.debug("Occupation[{}] update to Person[{}]", occupation, person);
+    }
+
+    private void addOccupation(Person person, Movie movie, Occupation occupation) {
+        occupationRepository.save(occupation);
+        addOccupation(person, occupation);
+        movieService.addOccupation(movie, occupation);
+    }
+
+    private void removeOccupation(Person person, Movie movie, Occupation occupation) {
+        removeOccupation(person, occupation);
+        movieService.removeOccupation(movie, occupation);
+    }
+
+    private void addOccupation(Person person, Episode episode, Occupation occupation) {
+        occupationRepository.save(occupation);
+        addOccupation(person, occupation);
+        episodeService.addOccupation(episode, occupation);
+    }
+
+    private void removeOccupation(Person person, Episode episode, Occupation occupation) {
+        removeOccupation(person, occupation);
+        episodeService.removeOccupation(episode, occupation);
     }
 
     private boolean isNull(Object object) {

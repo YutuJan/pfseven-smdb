@@ -14,7 +14,9 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @SuperBuilder
 @Entity
-@Table(name = "OCCUPATIONS")
+@Table(name = "OCCUPATIONS",
+        uniqueConstraints = @UniqueConstraint(name = "UniqueVideoEntertainmentAndPerson",
+                columnNames = {"VIDEO_ENTERTAINMENT_ID", "PERSON_ID"}))
 @SequenceGenerator(name = "idGenerator", sequenceName = "OCCUPATIONS_SEQ", initialValue = 1, allocationSize = 1)
 public class Occupation extends BaseModel {
     @NotNull

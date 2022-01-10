@@ -5,16 +5,21 @@ import com.pfseven.smdb.domain.Occupation;
 import com.pfseven.smdb.domain.Person;
 import com.pfseven.smdb.domain.RoleType;
 import com.pfseven.smdb.repository.MovieRepository;
+import com.pfseven.smdb.repository.OccupationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 public class MoviesServiceImpl extends BaseServiceImpl<Movie> implements MovieService {
     private final MovieRepository movieRepository;
+    private final OccupationRepository occupationRepository;
     private PersonService personService;
 
     @Autowired
@@ -114,6 +119,7 @@ public class MoviesServiceImpl extends BaseServiceImpl<Movie> implements MovieSe
     }
 
     private void addOccupation(Person person, Movie movie, Occupation occupation) {
+        occupationRepository.save(occupation);
         personService.addOccupation(person, occupation);
         addOccupation(movie, occupation);
     }
