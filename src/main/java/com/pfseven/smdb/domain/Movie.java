@@ -14,11 +14,11 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
+@ToString(callSuper = true)
 @Entity
 @Table(name = "MOVIES")
 @SequenceGenerator(name = "idGenerator", sequenceName = "MOVIES_SEQ", initialValue = 1, allocationSize = 1)
 public class Movie extends VideoEntertainment {
-    @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @ElementCollection
     @Enumerated(EnumType.STRING)

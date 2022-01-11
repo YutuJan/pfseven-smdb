@@ -93,6 +93,7 @@ node
 docker
 uml
 HELP.md
+backups
 
 /logs/
 
