@@ -1,6 +1,7 @@
 package com.pfseven.smdb.service;
 
 import com.pfseven.smdb.domain.Episode;
+import com.pfseven.smdb.domain.Genre;
 import com.pfseven.smdb.domain.Series;
 import com.pfseven.smdb.repository.SeriesRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -79,6 +82,11 @@ public class SeriesServiceImpl extends BaseServiceImpl<Series> implements Series
         }
 
         super.delete(series);
+    }
+
+    @Override
+    public List<Series> findByGenre(Genre genre) {
+        return seriesRepository.findSeriesByGenresContaining(genre);
     }
 
     @Override

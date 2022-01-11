@@ -1,6 +1,8 @@
 package com.pfseven.smdb.controller;
 
 import com.pfseven.smdb.domain.Episode;
+import com.pfseven.smdb.domain.Genre;
+import com.pfseven.smdb.domain.Movie;
 import com.pfseven.smdb.domain.Series;
 import com.pfseven.smdb.service.BaseService;
 import com.pfseven.smdb.service.EpisodeService;
@@ -13,7 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-//
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/series")
@@ -35,6 +38,12 @@ public class SeriesController extends AbstractController<Series> {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteByTitle(@PathVariable("title") final String title) {
         seriesService.deleteByTitle(title);
+    }
+
+    @GetMapping(params = "g")
+    public ResponseEntity<ApiResponse<List<Series>>> findSeriesByGenresContaining(@RequestParam("g") final String genre) {
+        Genre genre1 = Genre.valueOf(genre);
+        return ResponseEntity.ok(ApiResponse.<List<Series>>builder().data(seriesService.findByGenre(genre1)).build());
     }
 
     @PostMapping("/add")

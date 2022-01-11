@@ -65,6 +65,11 @@ public class EpisodeController extends AbstractController<Episode> {
         episodeService.removePersonToEpisodeOccupation(firstName, lastName, title, roleType);
     }
 
+    @GetMapping("/top")
+    public ResponseEntity<ApiResponse<Episode>> findTopRatedEpisode() {
+        return ResponseEntity.ok(ApiResponse.<Episode>builder().data(episodeService.findFirstByOrderByRatingDesc()).build());
+    }
+
     @Override
     protected BaseService<Episode, Long> getService() {
         return episodeService;

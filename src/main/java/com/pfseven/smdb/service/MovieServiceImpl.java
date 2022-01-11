@@ -1,11 +1,15 @@
 package com.pfseven.smdb.service;
 
+import com.pfseven.smdb.domain.Genre;
 import com.pfseven.smdb.domain.Movie;
 import com.pfseven.smdb.domain.Occupation;
 import com.pfseven.smdb.domain.Person;
 import com.pfseven.smdb.domain.RoleType;
 import com.pfseven.smdb.repository.MovieRepository;
 import com.pfseven.smdb.repository.OccupationRepository;
+import com.pfseven.smdb.transfer.MoviesPerGenreDto;
+import com.pfseven.smdb.transfer.MoviesPerGenrePerYearDto;
+import com.pfseven.smdb.transfer.TopRatedMovieDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -17,6 +21,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -137,6 +143,31 @@ public class MovieServiceImpl extends BaseServiceImpl<Movie> implements MovieSer
                 .build();
 
         removeOccupation(person, movie, occupation);
+    }
+
+    @Override
+    public List<Movie> findMoviesByRatingIsGreaterThanEqual(Double rating) {
+        return movieRepository.findMoviesByRatingIsGreaterThanEqual(rating);
+    }
+
+    @Override
+    public TopRatedMovieDto findTopRatedMovie() {
+        return movieRepository.findTopRatedMovie();
+    }
+
+    @Override
+    public List<Movie> findMoviesByGenresContaining(Genre genre) {
+        return movieRepository.findMoviesByGenresContaining(genre);
+    }
+
+    @Override
+    public List<MoviesPerGenreDto> findMoviesPerGenre() {
+        return movieRepository.findMoviesPerGenre();
+    }
+
+    @Override
+    public List<MoviesPerGenrePerYearDto> findMoviesPerGenrePerYear() {
+        return movieRepository.findMoviesPerGenrePerYear();
     }
 
     @Override

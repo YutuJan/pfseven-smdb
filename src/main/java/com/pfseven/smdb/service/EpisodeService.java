@@ -12,6 +12,8 @@ public interface EpisodeService extends BaseService<Episode, Long> {
 
     void deleteOccupations(Episode episode);
 
+    Episode findFirstByOrderByRatingDesc();
+
     void addOccupation(Episode episode, Occupation occupation);
 
     void removeOccupation(Episode episode, Occupation occupation);

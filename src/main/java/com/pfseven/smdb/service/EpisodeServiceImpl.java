@@ -140,6 +140,11 @@ public class EpisodeServiceImpl extends BaseServiceImpl<Episode> implements Epis
     }
 
     @Override
+    public Episode findFirstByOrderByRatingDesc() {
+        return episodeRepository.findFirstByOrderByRatingDesc();
+    }
+
+    @Override
     public void addOccupation(Episode episode, Occupation occupation) {
         if (isNull(occupation) || isNull(episode)) {
             return;
