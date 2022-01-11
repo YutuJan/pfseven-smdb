@@ -20,7 +20,7 @@ import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
-public class MoviesServiceImpl extends BaseServiceImpl<Movie> implements MovieService {
+public class MovieServiceImpl extends BaseServiceImpl<Movie> implements MovieService {
     private final MovieRepository movieRepository;
     private final OccupationRepository occupationRepository;
     private PersonService personService;
