@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/episode")
+@RequestMapping("/episodes")
 public class EpisodeController extends AbstractController<Episode> {
     private final EpisodeService episodeService;
 

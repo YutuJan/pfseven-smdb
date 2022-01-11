@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/movie")
+@RequestMapping("/movies")
 public class MovieController extends AbstractController<Movie> {
     private final MovieService movieService;
 
