@@ -21,16 +21,6 @@ public abstract class AbstractController<T extends BaseModel> extends AbstractLo
                 getNoCacheHeaders(), HttpStatus.CREATED);
     }
 
-    @GetMapping
-    public ResponseEntity<ApiResponse<List<T>>> findAll() {
-        return ResponseEntity.ok(ApiResponse.<List<T>>builder().data(getService().findAll()).build());
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<T>> find(@PathVariable final Long id) {
-        return ResponseEntity.ok(ApiResponse.<T>builder().data(getService().find(id)).build());
-    }
-
     @PutMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@Valid @RequestBody final T entity) {

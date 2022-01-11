@@ -2,7 +2,6 @@ package com.pfseven.smdb.controller;
 
 import com.pfseven.smdb.domain.Episode;
 import com.pfseven.smdb.domain.Genre;
-import com.pfseven.smdb.domain.Movie;
 import com.pfseven.smdb.domain.Series;
 import com.pfseven.smdb.service.BaseService;
 import com.pfseven.smdb.service.EpisodeService;

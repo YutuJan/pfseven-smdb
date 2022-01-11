@@ -12,10 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -90,12 +88,12 @@ public class MovieController extends AbstractController<Movie> {
     }
 
     @GetMapping(headers = "a=findMoviesPerGenre")
-    public ResponseEntity<ApiResponse<List<MoviesPerGenreDto>>> findMoviesPerGenre(){
+    public ResponseEntity<ApiResponse<List<MoviesPerGenreDto>>> findMoviesPerGenre() {
         return ResponseEntity.ok(ApiResponse.<List<MoviesPerGenreDto>>builder().data(movieService.findMoviesPerGenre()).build());
     }
 
     @GetMapping(headers = "a=findMoviesPerGenrePerYear")
-    public ResponseEntity<ApiResponse<List<MoviesPerGenrePerYearDto>>> findMoviesPerGenrePerGenre(){
+    public ResponseEntity<ApiResponse<List<MoviesPerGenrePerYearDto>>> findMoviesPerGenrePerGenre() {
         return ResponseEntity.ok(ApiResponse.<List<MoviesPerGenrePerYearDto>>builder().data(movieService.findMoviesPerGenrePerYear()).build());
     }
 
