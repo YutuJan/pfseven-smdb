@@ -95,7 +95,6 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
             if (movie == null && episode != null) {
                 removeOccupation(person, episode, o);
             }
-            break;
         }
 
         super.delete(person);
@@ -233,10 +232,8 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
             return;
         }
 
-        System.out.println("Person's occupations: " + person.getOccupations().size());
         person.removeOccupation(occupation);
         update(person);
-        System.out.println("Person's occupations: " + person.getOccupations().size());
 
         logger.debug("Occupation[{}] update to Person[{}]", occupation, person);
     }
@@ -250,6 +247,7 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
     private void removeOccupation(Person person, Movie movie, Occupation occupation) {
         removeOccupation(person, occupation);
         movieService.removeOccupation(movie, occupation);
+        occupationRepository.delete(occupation);
     }
 
     private void addOccupation(Person person, Episode episode, Occupation occupation) {
@@ -259,8 +257,9 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
     }
 
     private void removeOccupation(Person person, Episode episode, Occupation occupation) {
-        removeOccupation(person, occupation);
         episodeService.removeOccupation(episode, occupation);
+        removeOccupation(person, occupation);
+        occupationRepository.delete(occupation);
     }
 
     private boolean isNull(Object object) {

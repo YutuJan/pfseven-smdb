@@ -47,7 +47,7 @@ public abstract class VideoEntertainment extends BaseModel {
     @JsonManagedReference("videoEntertainment")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
     @Column(name = "CAST_N_CREW")
     protected Set<Occupation> occupations = new HashSet<>();
 

@@ -6,6 +6,12 @@ import com.pfseven.smdb.repository.SeriesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +31,46 @@ public class SeriesServiceImpl extends BaseServiceImpl<Series> implements Series
     @Override
     public Series find(String title) {
         return seriesRepository.findByTitle(title);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED,
+            rollbackFor = Exception.class)
+    public void delete(Series series) {
+        Set<Episode> episodes = new HashSet<>(series.getEpisodes());
+
+        for (Episode e: episodes) {
+            removeEpisode(series, e);
+        }
+
+        super.delete(series);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED,
+            rollbackFor = Exception.class)
+    public void deleteById(Long id) {
+        Series series = find(id);
+        Set<Episode> episodes = new HashSet<>(series.getEpisodes());
+
+        for (Episode e: episodes) {
+            removeEpisode(series, e);
+        }
+
+        super.delete(series);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED,
+            rollbackFor = Exception.class)
+    public void deleteByTitle(String title) {
+        Series series = find(title);
+        Set<Episode> episodes = new HashSet<>(series.getEpisodes());
+
+        for (Episode e: episodes) {
+            removeEpisode(series, e);
+        }
+
+        super.delete(series);
     }
 
     @Override

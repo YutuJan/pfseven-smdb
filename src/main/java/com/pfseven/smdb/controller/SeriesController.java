@@ -31,6 +31,12 @@ public class SeriesController extends AbstractController<Series> {
         return ResponseEntity.ok(ApiResponse.<Series>builder().data(seriesService.find(title)).build());
     }
 
+    @DeleteMapping("/delete/{title}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteByTitle(@PathVariable("title") final String title) {
+        seriesService.deleteByTitle(title);
+    }
+
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void addEpisode(@Valid @RequestBody final SeriesAndEpisodeDto seriesAndEpisodeDto) {
