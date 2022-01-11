@@ -5,6 +5,7 @@ import com.pfseven.smdb.domain.Movie;
 import com.pfseven.smdb.domain.Occupation;
 import com.pfseven.smdb.repository.MovieRepository;
 import com.pfseven.smdb.transfer.MoviesPerGenreDto;
+import com.pfseven.smdb.transfer.MoviesPerGenrePerYearDto;
 import com.pfseven.smdb.transfer.TopRatedMovieDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -49,6 +50,11 @@ public class MovieServiceImpl extends BaseServiceImpl<Movie> implements MovieSer
     @Override
     public List<MoviesPerGenreDto> findMoviesPerGenre() {
         return movieRepository.findMoviesPerGenre();
+    }
+
+    @Override
+    public List<MoviesPerGenrePerYearDto> findMoviesPerGenrePerYear() {
+        return movieRepository.findMoviesPerGenrePerYear();
     }
 
     @Override
