@@ -8,6 +8,8 @@ public interface EpisodeService extends BaseService<Episode, Long> {
 
     Episode find(String title);
 
+    void deleteByTitle(String title);
+
     void deleteOccupations(Episode episode);
 
     void addOccupation(Episode episode, Occupation occupation);

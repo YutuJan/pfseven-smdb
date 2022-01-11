@@ -1,9 +1,6 @@
 package com.pfseven.smdb.service;
 
-import com.pfseven.smdb.domain.Episode;
-import com.pfseven.smdb.domain.Occupation;
-import com.pfseven.smdb.domain.Person;
-import com.pfseven.smdb.domain.RoleType;
+import com.pfseven.smdb.domain.*;
 import com.pfseven.smdb.repository.EpisodeRepository;
 import com.pfseven.smdb.repository.OccupationRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,6 +21,7 @@ public class EpisodeServiceImpl extends BaseServiceImpl<Episode> implements Epis
     private final EpisodeRepository episodeRepository;
     private final OccupationRepository occupationRepository;
     private PersonService personService;
+    private SeriesService seriesService;
 
     @Autowired
     @Lazy
@@ -28,17 +29,14 @@ public class EpisodeServiceImpl extends BaseServiceImpl<Episode> implements Epis
         this.personService = personService;
     }
 
-    JpaRepository<Episode, Long> getRepository() {
-        return episodeRepository;
+    @Autowired
+    @Lazy
+    public void setSeriesService(SeriesService seriesService) {
+        this.seriesService = seriesService;
     }
 
-    @Override
-    public void deleteOccupations(Episode episode) {
-        Set<Occupation> occupations = new HashSet<>(episode.getOccupations());
-
-        for (Occupation o : occupations) {
-            removeOccupation(o.getPerson(), episode, o);
-        }
+    JpaRepository<Episode, Long> getRepository() {
+        return episodeRepository;
     }
 
     @Override
@@ -49,6 +47,44 @@ public class EpisodeServiceImpl extends BaseServiceImpl<Episode> implements Epis
     @Override
     public Episode find(String title) {
         return episodeRepository.findEpisodeByTitle(title);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED,
+            rollbackFor = Exception.class)
+    public void delete(Episode episode) {
+        Series series = episode.getSeries();
+
+        seriesService.removeEpisode(series, episode);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED,
+            rollbackFor = Exception.class)
+    public void deleteById(Long id) {
+        Episode episode = find(id);
+        Series series = episode.getSeries();
+
+        seriesService.removeEpisode(series, episode);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED,
+            rollbackFor = Exception.class)
+    public void deleteByTitle(String title) {
+        Episode episode = find(title);
+        Series series = episode.getSeries();
+        System.out.println("Series: " + series);
+
+        seriesService.removeEpisode(series, episode);
+    }
+
+    @Override
+    public void deleteOccupations(Episode episode) {
+        Set<Occupation> occupations = new HashSet<>(episode.getOccupations());
+
+        for (Occupation o : occupations) {
+            removeOccupation(o.getPerson(), episode, o);
+        }
     }
 
     @Override

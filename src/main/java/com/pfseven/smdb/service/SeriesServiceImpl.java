@@ -4,6 +4,8 @@ import com.pfseven.smdb.domain.Episode;
 import com.pfseven.smdb.domain.Series;
 import com.pfseven.smdb.repository.SeriesRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -17,7 +19,13 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class SeriesServiceImpl extends BaseServiceImpl<Series> implements SeriesService {
     private final SeriesRepository seriesRepository;
-    private final EpisodeService episodeService;
+    private EpisodeService episodeService;
+
+    @Autowired
+    @Lazy
+    public void setEpisodeService(EpisodeService episodeService) {
+        this.episodeService = episodeService;
+    }
 
     JpaRepository<Series, Long> getRepository() {
         return seriesRepository;
@@ -39,7 +47,7 @@ public class SeriesServiceImpl extends BaseServiceImpl<Series> implements Series
     public void delete(Series series) {
         Set<Episode> episodes = new HashSet<>(series.getEpisodes());
 
-        for (Episode e: episodes) {
+        for (Episode e : episodes) {
             removeEpisode(series, e);
         }
 
@@ -53,7 +61,7 @@ public class SeriesServiceImpl extends BaseServiceImpl<Series> implements Series
         Series series = find(id);
         Set<Episode> episodes = new HashSet<>(series.getEpisodes());
 
-        for (Episode e: episodes) {
+        for (Episode e : episodes) {
             removeEpisode(series, e);
         }
 
@@ -66,7 +74,7 @@ public class SeriesServiceImpl extends BaseServiceImpl<Series> implements Series
         Series series = find(title);
         Set<Episode> episodes = new HashSet<>(series.getEpisodes());
 
-        for (Episode e: episodes) {
+        for (Episode e : episodes) {
             removeEpisode(series, e);
         }
 
