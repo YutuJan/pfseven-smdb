@@ -5,12 +5,14 @@ import com.pfseven.smdb.domain.Movie;
 import com.pfseven.smdb.service.BaseService;
 import com.pfseven.smdb.service.MovieService;
 import com.pfseven.smdb.transfer.ApiResponse;
+import com.pfseven.smdb.transfer.MoviesPerGenreDto;
 import com.pfseven.smdb.transfer.TopRatedMovieDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -42,6 +44,11 @@ public class MovieController extends AbstractController<Movie> {
     public ResponseEntity<ApiResponse<List<Movie>>> findMoviesByGenresContaining(@RequestParam("g") final String genre) {
         Genre genre1 = Genre.valueOf(genre);
         return ResponseEntity.ok(ApiResponse.<List<Movie>>builder().data(movieService.findMoviesByGenresContaining(genre1)).build());
+    }
+
+    @GetMapping(headers = "a=findMoviesPerGenre")
+    public ResponseEntity<ApiResponse<List<MoviesPerGenreDto>>> findMoviesPerGenre(){
+        return ResponseEntity.ok(ApiResponse.<List<MoviesPerGenreDto>>builder().data(movieService.findMoviesPerGenre()).build());
     }
 
     @Override

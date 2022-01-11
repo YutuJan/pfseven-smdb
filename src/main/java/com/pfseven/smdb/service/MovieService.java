@@ -3,6 +3,7 @@ package com.pfseven.smdb.service;
 import com.pfseven.smdb.domain.Genre;
 import com.pfseven.smdb.domain.Movie;
 import com.pfseven.smdb.domain.Occupation;
+import com.pfseven.smdb.transfer.MoviesPerGenreDto;
 import com.pfseven.smdb.transfer.TopRatedMovieDto;
 
 import java.util.List;
@@ -17,6 +18,8 @@ public interface MovieService extends BaseService<Movie, Long> {
     TopRatedMovieDto findTopRatedMovie();
 
     List<Movie> findMoviesByGenresContaining(Genre genre);
+
+    List<MoviesPerGenreDto> findMoviesPerGenre();
 
     void addOccupation(Movie movie, Occupation occupation);
 
