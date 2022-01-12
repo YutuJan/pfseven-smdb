@@ -1,13 +1,11 @@
 package com.pfseven.smdb.controller;
 
-import com.pfseven.smdb.domain.BaseModel;
-import com.pfseven.smdb.domain.Genre;
-import com.pfseven.smdb.domain.Movie;
-import com.pfseven.smdb.domain.Series;
-import com.pfseven.smdb.service.BaseService;
-import com.pfseven.smdb.service.MovieService;
-import com.pfseven.smdb.service.SeriesService;
+import com.pfseven.smdb.domain.*;
+import com.pfseven.smdb.service.*;
 import com.pfseven.smdb.transfer.ApiResponse;
+import com.pfseven.smdb.transfer.MoviesAndSeriesPerGenreDto;
+import com.pfseven.smdb.transfer.MoviesPerGenrePerYearDto;
+import com.pfseven.smdb.transfer.TopRatedMovieDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,12 +21,31 @@ import java.util.List;
 @RequestMapping("/reports")
 public class ReportsController extends AbstractController {
     private final MovieService movieService;
+    private final EpisodeService episodeService;
     private final SeriesService seriesService;
+    private final PersonService personService;
 
     @Override
     protected BaseService getService() {
         return null;
     }
+
+    @GetMapping("/top/movie")
+    public ResponseEntity<ApiResponse<TopRatedMovieDto>> findTopRatedMovie() {
+        return ResponseEntity.ok(ApiResponse.<TopRatedMovieDto>builder().data(movieService.findTopRatedMovie()).build());
+    }
+
+    @GetMapping("/top/episode")
+    public ResponseEntity<ApiResponse<Episode>> findTopRatedEpisode() {
+        return ResponseEntity.ok(ApiResponse.<Episode>builder().data(episodeService.findFirstByOrderByRatingDesc()).build());
+    }
+
+    @GetMapping(value = "/person", params = {"fn", "ln"})
+    public ResponseEntity<ApiResponse<Person>> find(@RequestParam("fn") String firstName,
+                                                    @RequestParam("ln") String lastName) {
+        return ResponseEntity.ok(ApiResponse.<Person>builder().data(personService.find(firstName, lastName)).build());
+    }
+
 
     @GetMapping(headers = "a=findContentByGenre", params = "g")
     public ResponseEntity<ApiResponse<List<BaseModel>>> findSeriesByGenresContaining(@RequestParam("g") final String genre) {
@@ -41,4 +58,20 @@ public class ReportsController extends AbstractController {
 
         return ResponseEntity.ok(ApiResponse.<List<BaseModel>>builder().data(newList).build());
     }
+
+    @GetMapping(headers = "a=findMoviesPerGenre")
+    public ResponseEntity<ApiResponse<List<MoviesAndSeriesPerGenreDto>>> findMoviesPerGenre() {
+        return ResponseEntity.ok(ApiResponse.<List<MoviesAndSeriesPerGenreDto>>builder().data(movieService.findMoviesPerGenre()).build());
+    }
+
+    @GetMapping(headers = "a=findSeriesPerGenre")
+    public ResponseEntity<ApiResponse<List<MoviesAndSeriesPerGenreDto>>> findSeriesPerGenre() {
+        return ResponseEntity.ok(ApiResponse.<List<MoviesAndSeriesPerGenreDto>>builder().data(seriesService.findSeriesPerGenre()).build());
+    }
+
+    @GetMapping(headers = "a=findMoviesPerGenrePerYear")
+    public ResponseEntity<ApiResponse<List<MoviesPerGenrePerYearDto>>> findMoviesPerGenrePerGenre() {
+        return ResponseEntity.ok(ApiResponse.<List<MoviesPerGenrePerYearDto>>builder().data(movieService.findMoviesPerGenrePerYear()).build());
+    }
+
 }

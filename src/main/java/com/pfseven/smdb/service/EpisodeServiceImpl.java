@@ -3,6 +3,7 @@ package com.pfseven.smdb.service;
 import com.pfseven.smdb.domain.*;
 import com.pfseven.smdb.repository.EpisodeRepository;
 import com.pfseven.smdb.repository.OccupationRepository;
+import com.pfseven.smdb.transfer.MoviesPerGenrePerYearDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service

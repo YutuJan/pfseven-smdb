@@ -4,6 +4,7 @@ import com.pfseven.smdb.domain.Episode;
 import com.pfseven.smdb.domain.Genre;
 import com.pfseven.smdb.domain.Series;
 import com.pfseven.smdb.repository.SeriesRepository;
+import com.pfseven.smdb.transfer.MoviesAndSeriesPerGenreDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -87,6 +88,11 @@ public class SeriesServiceImpl extends BaseServiceImpl<Series> implements Series
     @Override
     public List<Series> findByGenre(Genre genre) {
         return seriesRepository.findSeriesByGenresContaining(genre);
+    }
+
+    @Override
+    public List<MoviesAndSeriesPerGenreDto> findSeriesPerGenre() {
+        return seriesRepository.findSeriesPerGenre();
     }
 
     @Override

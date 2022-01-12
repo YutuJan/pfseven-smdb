@@ -2,7 +2,7 @@ package com.pfseven.smdb.repository;
 
 import com.pfseven.smdb.domain.Genre;
 import com.pfseven.smdb.domain.Movie;
-import com.pfseven.smdb.transfer.MoviesPerGenreDto;
+import com.pfseven.smdb.transfer.MoviesAndSeriesPerGenreDto;
 import com.pfseven.smdb.transfer.MoviesPerGenrePerYearDto;
 import com.pfseven.smdb.transfer.TopRatedMovieDto;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,7 +20,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     List<Movie> findMoviesByRatingIsGreaterThanEqual(Double rating);
 
     @Query(nativeQuery = true)
-    List<MoviesPerGenreDto> findMoviesPerGenre();
+    List<MoviesAndSeriesPerGenreDto> findMoviesPerGenre();
 
     @Query(nativeQuery = true)
     List<MoviesPerGenrePerYearDto> findMoviesPerGenrePerYear();

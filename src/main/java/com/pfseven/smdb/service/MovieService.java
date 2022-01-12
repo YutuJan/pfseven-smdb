@@ -3,7 +3,7 @@ package com.pfseven.smdb.service;
 import com.pfseven.smdb.domain.Genre;
 import com.pfseven.smdb.domain.Movie;
 import com.pfseven.smdb.domain.Occupation;
-import com.pfseven.smdb.transfer.MoviesPerGenreDto;
+import com.pfseven.smdb.transfer.MoviesAndSeriesPerGenreDto;
 import com.pfseven.smdb.transfer.MoviesPerGenrePerYearDto;
 import com.pfseven.smdb.transfer.TopRatedMovieDto;
 
@@ -22,7 +22,7 @@ public interface MovieService extends BaseService<Movie, Long> {
 
     List<Movie> findMoviesByGenresContaining(Genre genre);
 
-    List<MoviesPerGenreDto> findMoviesPerGenre();
+    List<MoviesAndSeriesPerGenreDto> findMoviesPerGenre();
 
     List<MoviesPerGenrePerYearDto> findMoviesPerGenrePerYear();
 

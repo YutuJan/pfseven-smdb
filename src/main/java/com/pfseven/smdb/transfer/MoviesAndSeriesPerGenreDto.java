@@ -2,7 +2,7 @@ package com.pfseven.smdb.transfer;
 
 import com.pfseven.smdb.domain.Genre;
 
-public interface MoviesPerGenreDto {
+public interface MoviesAndSeriesPerGenreDto {
 
     Genre getGenre();
 

@@ -2,6 +2,9 @@ package com.pfseven.smdb.service;
 
 import com.pfseven.smdb.domain.Episode;
 import com.pfseven.smdb.domain.Occupation;
+import com.pfseven.smdb.transfer.MoviesPerGenrePerYearDto;
+
+import java.util.List;
 
 public interface EpisodeService extends BaseService<Episode, Long> {
     Episode get(String title);

@@ -7,7 +7,7 @@ import com.pfseven.smdb.domain.Person;
 import com.pfseven.smdb.domain.RoleType;
 import com.pfseven.smdb.repository.MovieRepository;
 import com.pfseven.smdb.repository.OccupationRepository;
-import com.pfseven.smdb.transfer.MoviesPerGenreDto;
+import com.pfseven.smdb.transfer.MoviesAndSeriesPerGenreDto;
 import com.pfseven.smdb.transfer.MoviesPerGenrePerYearDto;
 import com.pfseven.smdb.transfer.TopRatedMovieDto;
 import lombok.RequiredArgsConstructor;
@@ -161,7 +161,7 @@ public class MovieServiceImpl extends BaseServiceImpl<Movie> implements MovieSer
     }
 
     @Override
-    public List<MoviesPerGenreDto> findMoviesPerGenre() {
+    public List<MoviesAndSeriesPerGenreDto> findMoviesPerGenre() {
         return movieRepository.findMoviesPerGenre();
     }
 
