@@ -14,6 +14,7 @@ import org.supercsv.io.CsvBeanWriter;
 import org.supercsv.io.ICsvBeanWriter;
 import org.supercsv.prefs.CsvPreference;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -46,6 +47,8 @@ public class BackupManagerImpl implements BackupManager {
         String fileName = "People_" + timeStamp + ".csv";
         String[] header = {"ID", "FIRSTNAME", "LASTNAME", "BIRTHDATE", "BIRTHPLACE", "BIOGRAPHY", "OCCUPATIONS"};
 
+        createBackupDirectory();
+
         ICsvBeanWriter csvBeanWriter = null;
         try {
             csvBeanWriter = new CsvBeanWriter(new FileWriter(DIRECTORY + fileName),
@@ -75,6 +78,8 @@ public class BackupManagerImpl implements BackupManager {
         String[] header = {"ID", "TITLE", "SUMMARY", "DURATIONINSECONDS", "RELEASEDATE", "RATING",
                 "DISTRIBUTOR", "OCCUPATIONS", "GENRES"};
 
+        createBackupDirectory();
+
         ICsvBeanWriter csvBeanWriter = null;
         try {
             csvBeanWriter = new CsvBeanWriter(new FileWriter(DIRECTORY + fileName),
@@ -102,6 +107,8 @@ public class BackupManagerImpl implements BackupManager {
         String timeStamp = dateFormat.format(new Date());
         String fileName = "Series_" + timeStamp + ".csv";
         String[] header = {"ID", "TITLE", "INFO", "EPISODES", "SERIESCATEGORY", "GENRES"};
+
+        createBackupDirectory();
 
         ICsvBeanWriter csvBeanWriter = null;
         try {
@@ -132,6 +139,8 @@ public class BackupManagerImpl implements BackupManager {
         String[] header = {"ID", "TITLE", "SUMMARY", "DURATIONINSECONDS",
                 "RELEASEDATE", "RATING", "DISTRIBUTOR", "OCCUPATIONS", "SEASON", "SERIES"};
 
+        createBackupDirectory();
+
         ICsvBeanWriter csvBeanWriter = null;
         try {
             csvBeanWriter = new CsvBeanWriter(new FileWriter(DIRECTORY + fileName),
@@ -149,6 +158,13 @@ public class BackupManagerImpl implements BackupManager {
             csvBeanWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void createBackupDirectory() {
+        File directory = new File(DIRECTORY);
+        if (!directory.exists()) {
+            directory.mkdir();
         }
     }
 }
