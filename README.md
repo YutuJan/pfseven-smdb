@@ -10,6 +10,8 @@ among others.
 ## Domain Model
 Our system consists of several entities with the most basic being the Person, Movie, Series, Episode and Occupation.
 
+![pfseven-smdb_uml_domain_2022-01-14](https://user-images.githubusercontent.com/10975341/149506543-1b51d74d-5723-47c7-916a-b9dbda3487d8.png)
+
 ## Sample Data Generation
 We have generated some corresponding sample data to feed the services under development. They can be found in the 
 bootstrap package created by several CommandLineRunner classes. More specifically we are initializing our database with 
